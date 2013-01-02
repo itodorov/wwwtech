@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SWAG FASHION</title>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2012.3.1114/js/kendo.all.min.js"></script>
+    <link href="http://cdn.kendostatic.com/2012.3.1114/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="http://cdn.kendostatic.com/2012.3.1114/styles/kendo.metro.min.css" rel="stylesheet" />
+	
+	<style>
+	body, h1, h2, h3
+	{
+		font-family:Segoe UI Light,Segoe UI,Arial,Verdana,Sans Serif;
+	}
+	a
+	{
+		color:#666666;
+		text-decoration:none;
+	}
+	header
+	{
+		min-height:120px;
+	}
+	footer
+	{
+		text-align:center;
+		background-color: #e1e1e1;
+		margin-top:30px;
+		margin-bottom:5px;
+	}
+	#pageContainer
+	{
+		width:970px;
+		margin:auto; 
+	}
+	#logoContainer
+	{
+		padding:10px;
+		height:100px;
+		float:left;
+	}
+	#loginContainer
+	{
+		float:right;
+		padding:10px;
+	}
+	#pageTitle
+	{
+		min-height:68px;
+		padding:35px;
+		background-color: #6D9EFF;
+		font-family: Segoe UI Light;
+		font-size: 32pt;
+		font-weight: bold;
+		vertical-align: middle;
+	}
+	#pageContent
+	{
+		margin-top:20px;
+	}
+	#mainNav
+	{
+		float:left;
+		min-width:200px; 
+		background-color: #E6E6E6;
+	}
+	#mainContent
+	{
+		float:left;
+		width:770px; 
+	}
+	</style>
+
+    <style scoped>
+        #listView {
+	    min-height: 610px;
+	}
+	
+	.product {
+	    float: left;
+	    position: relative;
+            width: 110px;
+            height: 160px;
+            margin: 10px;
+            padding: 7px 7px 0 7px;
+            -moz-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+            -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+	    background-color: rgba(255,255,255,0.8)
+        }
+	
+        .product img {
+	    width: 110px;
+            height: 110px;
+        }
+	
+        .product h3 {
+            margin: 0;
+            padding: 0;
+            line-height: 1.1em;
+	    font-size: .9em;
+	    font-weight: normal;
+            text-transform: uppercase;
+	    color: #777;
+        }
+	
+        .product p {
+            visibility: hidden;
+        }
+	
+	.product:hover p {
+            visibility: visible;
+	    position: absolute;
+	    width: 100px;
+	    height: 34px;
+	    top: 77px;
+            margin: 0;
+	    padding: 3px 5px;
+	    line-height: 34px;
+	    vertical-align: middle;
+	    text-align: center;
+	    color: #fff;
+	    background-color: rgba(0,0,0,0.65);
+	    transition: background .2s linear, color .2s linear;
+	    -moz-transition: background .2s linear, color .2s linear;
+	    -webkit-transition: background .2s linear, color .2s linear;
+	    -o-transition: background .2s linear, color .2s linear;
+        }
+	
+        .k-listview:after, .product dl:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+	
+        .k-listview {
+            border: 0;
+            padding: 0 0 20px 0;
+            min-width: 0;
+        }
+    </style>
+	
+</head>
+
+<body>
+	<div id="pageContainer">
+		<header> 
+			<div id="logoContainer">
+				<img src="logo.png" />
+			</div>
+			<div id="loginContainer">
+				<span><a href="#">ADMIN</a> | <a href="#">BASKET</a></span> <br/>
+				<span><a href="#">SIGN IN</a> | <a href="#">SIGN UP</a></span>
+			</div>
+		</header>
+		<section id="pageTitle">
+			<span>PAGE TITLE</span>
+		</section>
+		<section id="pageContent">
+			<section id="mainNav">
+				<h3>Products</h3>
+				<hr>
+				<ul id="navTreeView">
+					<li>Darva
+						<ul>
+							<li>Surovi (2)</li>
+							<li>Suhi (5)</li>
+							<li>Cepeni (7)</li>
+						</ul>
+					</li>
+					<li>Chalga
+						<ul>
+							<li>Retro (3)</li>
+							<li>Turbo (4)</li>
+							<li>Moderna (8)</li>
+						</ul>
+					</li>
+				</ul>
+				<script>
+					$(document).ready(function() {
+						$("#navTreeView").kendoTreeView();
+					});
+				</script>
+			
+			</section>
+			<section id="mainContent">
+				<h3>Selected Category</h3>
+				<br>
+				<div>
+				
+					<div id="listView">
+					</div>
+
+					<div id="pager" class="k-pager-wrap">
+					</div>
+				</div>
+    <script type="text/x-kendo-tmpl" id="template">
+        <div class="product">
+            <img src="http://demos.kendoui.com/content/web/foods/${ProductID}.jpg" alt="${ProductName} image" />
+            <h3>${ProductName}</h3>
+            <p>${kendo.toString(UnitPrice, "c")}</p>
+        </div>
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            var dataSource = new kendo.data.DataSource({
+                    transport: {
+                        read: {
+                            url: "http://demos.kendoui.com/service/Products",
+                            dataType: "jsonp"
+                        }
+                    },
+                    pageSize: 15
+                });
+
+            $("#pager").kendoPager({
+                dataSource: dataSource
+            });
+
+            $("#listView").kendoListView({
+                dataSource: dataSource,
+                template: kendo.template($("#template").html())
+            });
+        });
+    </script>
+
+	
+			</section>
+			<section style="clear:both;"></section>
+		</section>
+		<footer>
+			All Rights Prase (P)
+		</footer>
+	</div>
+</body>
+</html>
