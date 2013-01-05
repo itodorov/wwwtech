@@ -1,7 +1,12 @@
-﻿@if(Request.IsAuthenticated) {
-    <text>Welcome <strong>@User.Identity.Name</strong>!
-    [ @Html.ActionLink("Log Off", "LogOff", "Account") ]</text>
+﻿@if(Object.Equals(Session["IsAuthenticated"], true)) {
+    <text>Welcome <strong>@Session["Username"]</strong>!
+    [ @Html.ActionLink("Log Off", "LogOff", "Account") ]</text> <br/>
+    <span><a href="#">ADMIN</a> | <a href="#">BASKET</a></span> <br/>
 }
-else {
-    @:[ @Html.ActionLink("Log On", "LogOn", "Account") ]
+else
+{
+	<span>
+        @Html.ActionLink("SIGN IN", "LogOn", "Account") | 
+        @Html.ActionLink("SIGN UP", "Register", "Account")
+    </span>
 }
