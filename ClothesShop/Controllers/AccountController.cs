@@ -29,7 +29,7 @@ namespace ClothesShop.Controllers
             if (ModelState.IsValid)
             {
                 ClothesShopEntities entities = new ClothesShopEntities();
-                if (entities.Users.Select(x => x.Username == model.UserName && x.Password == model.Password).Count() == 1)
+                if (entities.Users.Where(x => x.Username == model.UserName && x.Password == model.Password).Count() == 1)
                 {
                     Session["Username"] = model.UserName;
                     Session["IsAuthenticated"] = true;
