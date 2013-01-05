@@ -82,6 +82,12 @@ namespace ClothesShop.Controllers
             if (ModelState.IsValid)
             {
                 ClothesShopEntities entities = new ClothesShopEntities();
+                if (entities.Users.Where(x => x.Username == model.UserName).Count() > 0)
+                {
+                    ModelState.AddModelError("", "Username already exists");
+                    return View(model);
+                }
+
                 ClothesShop.User user = new ClothesShop.User();
                 user.Username = model.UserName;
                 user.Password = model.Password;
