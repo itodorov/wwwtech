@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace ClothesShop.Data
 {
@@ -11,6 +9,13 @@ namespace ClothesShop.Data
         public int Level { get; set; }
         public int CategoryId { get; set; }
         public List<CategoryNode> ChildNodes { get; set; }
+		public bool HasChildren
+		{
+			get
+			{
+				return this.ChildNodes.Count > 0;
+			}
+		}
 
         public CategoryNode()
         {

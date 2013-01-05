@@ -36,7 +36,8 @@
 				        data: @Html.Raw(ClothesShop.Data.DataHelper.GetCategoriesTree()) ,
 				        schema: {
 				            model: { 
-				                children: "ChildNodes"
+				                children: "ChildNodes",
+								hasChildren: "HasChildren"
 				            }
 				        }
 				    });
