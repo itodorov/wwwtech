@@ -1,0 +1,61 @@
+﻿body, h1, h2, h3
+{
+	font-family:Segoe UI Light,Segoe UI,Arial,Verdana,Sans Serif;
+}
+a
+{
+	color:#666666;
+	text-decoration:none;
+}
+header
+{
+	min-height:120px;
+}
+footer
+{
+	text-align:center;
+	background-color: #e1e1e1;
+	margin-top:30px;
+	margin-bottom:5px;
+}
+#pageContainer
+{
+	width:970px;
+	margin:auto; 
+}
+#logoContainer
+{
+	padding:10px;
+	height:100px;
+	float:left;
+}
+#loginContainer
+{
+	float:right;
+	padding:10px;
+}
+#pageTitle
+{
+	min-height:68px;
+	padding:35px;
+	background-color: #6D9EFF;
+	font-family: Segoe UI Light;
+	font-size: 32pt;
+	font-weight: bold;
+	vertical-align: middle;
+}
+#pageContent
+{
+	margin-top:20px;
+}
+#mainNav
+{
+	float:left;
+	min-width:200px; 
+	background-color: #E6E6E6;
+}
+#mainContent
+{
+	float:left;
+	width:770px; 
+}

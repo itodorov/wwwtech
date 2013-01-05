@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>SWAG FASHION</title>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2012.3.1114/js/kendo.all.min.js"></script>
+    <link href="@Url.Content("~/Content/Style.css")" rel="stylesheet" type="text/css" /> 
+    <link href="@Url.Content("~/Content/ListView.css")" rel="stylesheet" type="text/css" /> 
+    <link href="http://cdn.kendostatic.com/2012.3.1114/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="http://cdn.kendostatic.com/2012.3.1114/styles/kendo.metro.min.css" rel="stylesheet" />
+</head>
+
+<body>
+	<div id="pageContainer">
+		<header> 
+			<div id="logoContainer">
+				<img src="@Url.Content("~/Content/logo.png")" />
+			</div>
+			<div id="loginContainer">
+				<span><a href="#">ADMIN</a> | <a href="#">BASKET</a></span> <br/>
+				<span><a href="#">SIGN IN</a> | <a href="#">SIGN UP</a></span>
+			</div>
+		</header>
+		<section id="pageTitle">
+			<span>PAGE TITLE</span>
+		</section>
+		<section id="pageContent">
+			<section id="mainNav">
+				<h3>Products</h3>
+				<hr>
+				<ul id="navTreeView">
+					<li>Darva
+						<ul>
+							<li>Surovi (2)</li>
+							<li>Suhi (5)</li>
+							<li>Cepeni (7)</li>
+						</ul>
+					</li>
+					<li>Chalga
+						<ul>
+							<li>Retro (3)</li>
+							<li>Turbo (4)</li>
+							<li>Moderna (8)</li>
+						</ul>
+					</li>
+				</ul>
+				<script>
+				    $(document).ready(function () {
+				        $("#navTreeView").kendoTreeView();
+				    });
+				</script>
+			
+			</section>
+
+			<section id="mainContent">
+                @RenderBody()
+            </section>
+            			</section>
+<section style="clear: both;"></section>
+		</section>
+		<footer>
+			All Rights Prase (P)
+		</footer>
+	</div>
+</body>
+</html>
