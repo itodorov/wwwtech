@@ -40,5 +40,17 @@ namespace ClothesShop.Data
             string json = jsonSerializer.Serialize(result);
             return json;
         }
+
+		public static object GetSubCategoryItems(int subCategoryID)
+		{
+			using (ClothesShopEntities entities = new ClothesShopEntities())
+			{
+				var result = from product in entities.Products
+							 where product.SubCategoryID == subCategoryID
+							 select new { ProductName = product.Name, ProductID = product.ID, UnitPrice = product.Price };
+
+				return result.ToList();
+			}
+		}
     }
 }

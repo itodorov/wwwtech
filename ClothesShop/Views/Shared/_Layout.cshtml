@@ -45,7 +45,7 @@
 				    $(document).ready(function () {
 				        $("#navTreeView").kendoTreeView({
                                dataSource: homogeneous,
-                               dataTextField: ["CategoryName", "CategoryName"]
+                               dataTextField: ["CategoryName"]
                          })
 				    });
 				</script>
@@ -55,9 +55,8 @@
 			<section id="mainContent">
                 @RenderBody()
             </section>
-            			</section>
-<section style="clear: both;"></section>
-		</section>
+        </section>
+		<section style="clear: both;"/>
 		<footer>
 			All Rights Prase (P) (For additional info see the @Html.ActionLink("About", "About", "Home") page)
 		</footer>
