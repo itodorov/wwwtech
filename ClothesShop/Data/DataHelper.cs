@@ -52,5 +52,11 @@ namespace ClothesShop.Data
 				return result.ToList();
 			}
 		}
+
+        public static ClothesShop.Product GetProduct(int productId)
+        {
+            ClothesShopEntities entities = new ClothesShopEntities();
+            return entities.Products.Where(x => x.ID == productId).FirstOrDefault();
+        }
     }
 }

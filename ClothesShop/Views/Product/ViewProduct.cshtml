@@ -1,0 +1,65 @@
+﻿@model ClothesShop.Models.ProductModel
+
+@{
+    ViewBag.Title = "Product Details";
+}
+
+
+<fieldset>
+    <legend>ProductModel</legend>
+
+    <div class="display-label">SubCategoryID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SubCategoryID)
+    </div>
+
+    <div class="display-label">Number</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Number)
+    </div>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">NameEN</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NameEN)
+    </div>
+
+    <div class="display-label">Description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">DescriptionEN</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DescriptionEN)
+    </div>
+
+    <div class="display-label">Price</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">Weight</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Weight)
+    </div>
+
+    <div class="display-label">Special</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Special)
+    </div>
+
+    <div class="display-label">QuantityType</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.QuantityType)
+    </div>
+
+    <div class="display-label">Quantity</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Quantity)
+    </div>
+</fieldset> 
