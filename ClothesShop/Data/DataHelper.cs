@@ -20,6 +20,7 @@ namespace ClothesShop.Data
 					CategoryNode node = new CategoryNode();
 					node.CategoryName = cat.CategoryName;
 					node.Level = 0;
+					node.HasChildren = true;
 
 					foreach (ClothesShop.SubCategory subCat in cat.SubCategories)
 					{
@@ -28,6 +29,7 @@ namespace ClothesShop.Data
 						subNode.CategoryName = subCat.SubCategoryName + "(" + subCat.Products.Count + ")";
 						subNode.CategoryId = subCat.ID;
 						subNode.Level = 1;
+						subNode.HasChildren = false;
 
 						node.ChildNodes.Add(subNode);
 					}

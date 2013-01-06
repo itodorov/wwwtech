@@ -42,10 +42,32 @@
 				        }
 				    });
 
+					function onSelect(e) {
+						var item = $("#navTreeView").data("kendoTreeView").dataItem(e.node);
+						if(!item.HasChildren) {
+							var dataSource = new kendo.data.DataSource({
+								transport: {
+									read: {
+                    					url: "/Data/Products/" + item.CategoryId,
+										dataType: "json"
+									}
+								},
+								pageSize: 15
+							});
+
+							var pager = $("#pager").data("kendoPager");
+							pager.setDataSource(dataSource);
+
+							var listview = $("#listView").data("kendoListView");
+							listview.setDataSource(dataSource);
+						}
+					};
+
 				    $(document).ready(function () {
 				        $("#navTreeView").kendoTreeView({
                                dataSource: homogeneous,
-                               dataTextField: ["CategoryName"]
+                               dataTextField: ["CategoryName"],
+							   select: onSelect
                          })
 				    });
 				</script>

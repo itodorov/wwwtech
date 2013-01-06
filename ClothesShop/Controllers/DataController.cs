@@ -17,9 +17,10 @@ namespace ClothesShop.Controllers
             return View();
         }
 
-		public ActionResult Products()
+		[HttpGet]
+		public ActionResult Products(int id)
 		{
-			return JsonResultilizer(DataHelper.GetSubCategoryItems(4));
+			return JsonResultilizer(DataHelper.GetSubCategoryItems(id));
 		}
 
 		private ActionResult JsonResultilizer(object result)

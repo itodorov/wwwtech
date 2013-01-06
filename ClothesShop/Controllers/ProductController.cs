@@ -8,9 +8,10 @@ namespace ClothesShop.Controllers
 {
     public class ProductController : Controller
     {
-        public ActionResult ViewProduct(int productId)
+		[HttpGet]
+        public ActionResult ViewProduct(int id)
         {
-            return View(new ClothesShop.Models.ProductModel(Data.DataHelper.GetProduct(productId)));
+            return View(new ClothesShop.Models.ProductModel(Data.DataHelper.GetProduct(id)));
         }
     }
 }
