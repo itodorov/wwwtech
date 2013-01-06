@@ -45,6 +45,11 @@
 					function onSelect(e) {
 						var item = $("#navTreeView").data("kendoTreeView").dataItem(e.node);
 						if(!item.HasChildren) {
+                            if($("#listView").length == 0)
+                            {
+                                document.location = "/Home";
+                                return;
+                            }
 							var dataSource = new kendo.data.DataSource({
 								transport: {
 									read: {

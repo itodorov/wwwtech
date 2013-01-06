@@ -1,7 +1,14 @@
 ﻿@if(Object.Equals(Session["IsAuthenticated"], true)) {
     <text>Welcome <strong>@Session["Username"]</strong>!
     [ @Html.ActionLink("Log Off", "LogOff", "Account") ]</text> <br/>
-    <span><a href="#">ADMIN</a> | <a href="#">BASKET</a></span> <br/>
+     
+    if(Object.Equals(Session["IsAdmin"], true)) 
+    {      
+        <text>  
+        <a href="#">ADMIN</a> | 
+        </text>
+    }
+    @Html.ActionLink("BASKET", "Index", "Basket")
 }
 else
 {

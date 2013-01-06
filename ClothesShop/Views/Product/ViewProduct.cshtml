@@ -62,4 +62,6 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Quantity)
     </div>
+
+    @Html.ActionLink("Add to cart", "AddToCart", "Basket", new { id = Model.ID }, null)
 </fieldset> 

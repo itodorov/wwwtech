@@ -1,0 +1,22 @@
+﻿@model ClothesShop.Models.BasketModel
+@{
+    ViewBag.Title = "Basket";
+}
+
+<fieldset>
+    <legend>Неща в Кошница</legend>
+    <table>
+        <tr>
+            <th>
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Product.Name
+                </td>
+            </tr>
+        }
+    </table>
+</fieldset>

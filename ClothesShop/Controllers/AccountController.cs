@@ -59,9 +59,7 @@ namespace ClothesShop.Controllers
 
         public ActionResult LogOff()
         {
-            Session.Remove("Username");
-            Session.Remove("IsAuthenticated");
-
+            Session.RemoveAll();
             return RedirectToAction("Index", "Home");
         }
 
