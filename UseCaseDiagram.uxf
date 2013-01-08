@@ -412,11 +412,11 @@ cart
     <coordinates>
       <x>270</x>
       <y>360</y>
-      <w>152</w>
+      <w>359</w>
       <h>179</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>135;27;27;162</additional_attributes>
+    <additional_attributes>342;27;27;162</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -444,8 +444,8 @@ cart
   <element>
     <type>com.umlet.element.Actor</type>
     <coordinates>
-      <x>963</x>
-      <y>360</y>
+      <x>954</x>
+      <y>225</y>
       <w>126</w>
       <h>108</h>
     </coordinates>
@@ -459,11 +459,11 @@ bg=green</panel_attributes>
     <coordinates>
       <x>720</x>
       <y>234</y>
-      <w>296</w>
-      <h>179</h>
+      <w>287</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>279;162;27;27</additional_attributes>
+    <additional_attributes>270;27;27;27</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.UseCase</type>
@@ -475,6 +475,39 @@ bg=green</panel_attributes>
     </coordinates>
     <panel_attributes>Add Category
 </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Actor</type>
+    <coordinates>
+      <x>981</x>
+      <y>558</y>
+      <w>90</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>ninja</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Actor</type>
+    <coordinates>
+      <x>1008</x>
+      <y>513</y>
+      <w>90</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>karateka</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Actor</type>
+    <coordinates>
+      <x>1035</x>
+      <y>558</y>
+      <w>90</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>ninja</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
