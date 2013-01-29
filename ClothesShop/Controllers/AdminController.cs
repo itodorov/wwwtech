@@ -23,7 +23,7 @@ namespace ClothesShop.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult AddCategory(CategoryModel categoryModel)
+		public ActionResult AddCategory(AddCategoryModel categoryModel)
 		{
 			if(ModelState.IsValid)
 			{
@@ -47,12 +47,7 @@ namespace ClothesShop.Controllers
 
 		public ActionResult AddSubcategory()
 		{
-			AddSubcategoryModel model = new AddSubcategoryModel();
-			using(ClothesShopEntities entity = new ClothesShopEntities())
-			{
-				model.Categories = new List<CategoryModel>(entity.Categories.Select(category => new CategoryModel() { Name = category.CategoryName, ID = category.ID }));
-			}
-			return View(model);
+			return View(new AddSubcategoryModel() { Categories = GetAllCategories() });
 		}
 
 		[HttpPost]
@@ -83,6 +78,42 @@ namespace ClothesShop.Controllers
 				}
 			}
 			return View(model);
+		}
+
+		public ActionResult RemoveCategory()
+		{
+			return View(new RemoveCategoryModel() { Categories = GetAllCategories() });
+		}
+
+		[HttpPost]
+		public ActionResult RemoveCategory(RemoveCategoryModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				using (ClothesShopEntities entity = new ClothesShopEntities())
+				{
+					Category category = entity.Categories.FirstOrDefault(c => c.ID == model.ID);
+					if (category != null)
+					{
+						entity.Categories.DeleteObject(category);
+						entity.SaveChanges();
+						return RedirectToAction("RemoveCategory", "Admin");
+					}
+					else
+					{
+						ModelState.AddModelError("", "A category with the given ID does not exist.");
+					}
+				}
+			}
+			return View(model);
+		}
+
+		private List<AddCategoryModel> GetAllCategories()
+		{
+			using (ClothesShopEntities entity = new ClothesShopEntities())
+			{
+				return new List<AddCategoryModel>(entity.Categories.Select(category => new AddCategoryModel() { Name = category.CategoryName, ID = category.ID }));
+			}
 		}
     }
 }

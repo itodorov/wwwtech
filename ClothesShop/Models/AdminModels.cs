@@ -7,7 +7,7 @@ using System.Web.Security;
 
 namespace ClothesShop.Models
 {
-	public class CategoryModel
+	public class AddCategoryModel
 	{
 		[Required]
 		[Display(Name = "Category name")]
@@ -22,10 +22,19 @@ namespace ClothesShop.Models
 		[Display(Name = "Subcategory name")]
 		public string SubcategoryName { get; set; }
 
-		public List<CategoryModel> Categories { get; set; }
+		public List<AddCategoryModel> Categories { get; set; }
 
 		[Required]
 		[Display(Name = "Category")]
 		public int ParentCategoryID { get; set; }
+	}
+
+	public class RemoveCategoryModel
+	{
+		public List<AddCategoryModel> Categories { get; set; }
+
+		[Required]
+		[Display(Name = "Category")]
+		public int ID { get; set; }
 	}
 }
