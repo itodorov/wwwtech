@@ -1,0 +1,12 @@
+﻿@{
+	ViewBag.Title = "Admin";
+}
+
+@if (Object.Equals(Session["IsAuthenticated"], true) && Object.Equals(Session["IsAdmin"], true))
+{
+	@Html.ActionLink("Add Category", "AddCategory", "Admin")
+}
+else
+{
+	<h2> You don't have the permissions to view this page.</h2>
+}

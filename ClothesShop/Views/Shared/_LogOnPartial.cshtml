@@ -5,7 +5,7 @@
     if(Object.Equals(Session["IsAdmin"], true)) 
     {      
         <text>  
-        <a href="#">ADMIN</a> | 
+        @Html.ActionLink("ADMIN", "Index", "Admin") | 
         </text>
     }
     @Html.ActionLink("BASKET", "Index", "Basket")

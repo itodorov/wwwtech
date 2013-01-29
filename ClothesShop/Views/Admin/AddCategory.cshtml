@@ -1,0 +1,29 @@
+﻿@model ClothesShop.Models.CategoryModel
+@{
+    ViewBag.Title = "Add Category";
+}
+
+@if (Object.Equals(Session["IsAuthenticated"], true) && Object.Equals(Session["IsAdmin"], true))
+{
+	@Html.ValidationSummary(true, "Adding category was unsuccessful. Please correct the errors and try again.")
+
+	using (Html.BeginForm())
+	{
+		<div>
+            <div class="editor-label">
+                @Html.LabelFor(m => m.Name)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.Name)
+            </div>
+
+            <p>
+                <input type="submit" value="Add Category" />
+            </p>
+		</div>
+	}
+}
+else
+{
+	<h2> You don't have the permissions to view this page.</h2>
+}
