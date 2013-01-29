@@ -59,7 +59,7 @@ namespace ClothesShop.Controllers
 				{
 					if (entity.Categories.Where(category => category.ID == model.ParentCategoryID).Count() != 0)
 					{
-						if (entity.SubCategories.Where(subcategory => subcategory.SubCategoryName == model.SubcategoryName).Count() == 0)
+						if (entity.SubCategories.Where(subcategory => subcategory.SubCategoryName == model.SubcategoryName && subcategory.CategoryID == model.ParentCategoryID).Count() == 0)
 						{
 							SubCategory newSubcategory = new SubCategory() { SubCategoryName = model.SubcategoryName, CategoryID = model.ParentCategoryID };
 							entity.AddToSubCategories(newSubcategory);
@@ -108,11 +108,48 @@ namespace ClothesShop.Controllers
 			return View(model);
 		}
 
+		public ActionResult RemoveSubcategory()
+		{
+			return View(new RemoveSubcategoryModel() { Subcategories = GetAllSubcategories() });
+		}
+
+		[HttpPost]
+		public ActionResult RemoveSubcategory(RemoveSubcategoryModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				using (ClothesShopEntities entity = new ClothesShopEntities())
+				{
+					SubCategory subcategory = entity.SubCategories.FirstOrDefault(c => c.ID == model.ID);
+					if (subcategory != null)
+					{
+						entity.SubCategories.DeleteObject(subcategory);
+						entity.SaveChanges();
+						return RedirectToAction("RemoveSubcategory", "Admin");
+					}
+					else
+					{
+						ModelState.AddModelError("", "A subcategory with the given ID does not exist.");
+					}
+				}
+			}
+			return View(model);
+		}
+
 		private List<AddCategoryModel> GetAllCategories()
 		{
 			using (ClothesShopEntities entity = new ClothesShopEntities())
 			{
 				return new List<AddCategoryModel>(entity.Categories.Select(category => new AddCategoryModel() { Name = category.CategoryName, ID = category.ID }));
+			}
+		}
+
+		private List<AddSubcategoryModel> GetAllSubcategories()
+		{
+			using (ClothesShopEntities entity = new ClothesShopEntities())
+			{
+				return new List<AddSubcategoryModel>(entity.SubCategories.Select(subcategory => new AddSubcategoryModel()
+					{ SubcategoryName = subcategory.Category.CategoryName + " | " + subcategory.SubCategoryName, ID = subcategory.ID }));
 			}
 		}
     }

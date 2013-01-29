@@ -22,6 +22,8 @@ namespace ClothesShop.Models
 		[Display(Name = "Subcategory name")]
 		public string SubcategoryName { get; set; }
 
+		public int ID { get; set; }
+
 		public List<AddCategoryModel> Categories { get; set; }
 
 		[Required]
@@ -35,6 +37,15 @@ namespace ClothesShop.Models
 
 		[Required]
 		[Display(Name = "Category")]
+		public int ID { get; set; }
+	}
+
+	public class RemoveSubcategoryModel
+	{
+		public List<AddSubcategoryModel> Subcategories { get; set; }
+
+		[Required]
+		[Display(Name = "Subcategory")]
 		public int ID { get; set; }
 	}
 }
