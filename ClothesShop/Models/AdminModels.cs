@@ -12,5 +12,20 @@ namespace ClothesShop.Models
 		[Required]
 		[Display(Name = "Category name")]
 		public string Name { get; set; }
+
+		public int ID { get; set; }
+	}
+
+	public class AddSubcategoryModel
+	{
+		[Required]
+		[Display(Name = "Subcategory name")]
+		public string SubcategoryName { get; set; }
+
+		public List<CategoryModel> Categories { get; set; }
+
+		[Required]
+		[Display(Name = "Category")]
+		public int ParentCategoryID { get; set; }
 	}
 }

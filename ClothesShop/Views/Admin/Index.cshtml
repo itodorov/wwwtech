@@ -5,6 +5,8 @@
 @if (Object.Equals(Session["IsAuthenticated"], true) && Object.Equals(Session["IsAdmin"], true))
 {
 	@Html.ActionLink("Add Category", "AddCategory", "Admin")
+	<br/>
+	@Html.ActionLink("Add Subcategory", "AddSubcategory", "Admin")
 }
 else
 {
