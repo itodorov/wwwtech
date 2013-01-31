@@ -7,15 +7,26 @@ using ClothesShop.Models;
 
 namespace ClothesShop.Controllers
 {
-    public class AdminController : Controller
-    {
-        //
-        // GET: /Admin/
+	public class AdminController : Controller
+	{
+		//
+		// GET: /Admin/
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+		public ActionResult Index()
+		{
+			return RedirectToAction("Categories");
+		}
+
+		public ActionResult Categories()
+		{
+			return View(this.GetAllCategories());
+		}
+
+		public ActionResult SubCategories()
+		{
+			ViewBag.Categories = this.GetAllCategories();
+			return View(this.GetAllSubcategories());
+		}
 
 		public ActionResult AddCategory()
 		{
@@ -23,18 +34,17 @@ namespace ClothesShop.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult AddCategory(AddCategoryModel categoryModel)
+		public ActionResult AddCategory(CategoryModel categoryModel)
 		{
-			if(ModelState.IsValid)
+			if (ModelState.IsValid)
 			{
-				using(ClothesShopEntities entity = new ClothesShopEntities())
+				using (ClothesShopEntities entity = new ClothesShopEntities())
 				{
 					if (entity.Categories.Where(category => category.CategoryName == categoryModel.Name).Count() == 0)
 					{
 						Category newCategory = new Category() { CategoryName = categoryModel.Name };
 						entity.AddToCategories(newCategory);
 						entity.SaveChanges();
-						return RedirectToAction("AddCategory", "Admin");
 					}
 					else
 					{
@@ -42,29 +52,30 @@ namespace ClothesShop.Controllers
 					}
 				}
 			}
-			return View(categoryModel);
+
+			return RedirectToAction("Categories");
 		}
 
-		public ActionResult AddSubcategory()
+		public ActionResult AddSubCategory()
 		{
-			return View(new AddSubcategoryModel() { Categories = GetAllCategories() });
+			ViewBag.Categories = this.GetAllCategories();
+			return View();
 		}
 
 		[HttpPost]
-		public ActionResult AddSubcategory(AddSubcategoryModel model)
+		public ActionResult AddSubCategory(SubcategoryModel model)
 		{
 			if (ModelState.IsValid)
 			{
 				using (ClothesShopEntities entity = new ClothesShopEntities())
 				{
-					if (entity.Categories.Where(category => category.ID == model.ParentCategoryID).Count() != 0)
+					if (entity.Categories.Where(category => category.ID == model.CategoryID).Count() != 0)
 					{
-						if (entity.SubCategories.Where(subcategory => subcategory.SubCategoryName == model.SubcategoryName && subcategory.CategoryID == model.ParentCategoryID).Count() == 0)
+						if (entity.SubCategories.Where(subcategory => subcategory.SubCategoryName == model.SubcategoryName && subcategory.CategoryID == model.CategoryID).Count() == 0)
 						{
-							SubCategory newSubcategory = new SubCategory() { SubCategoryName = model.SubcategoryName, CategoryID = model.ParentCategoryID };
+							SubCategory newSubcategory = new SubCategory() { SubCategoryName = model.SubcategoryName, CategoryID = model.CategoryID };
 							entity.AddToSubCategories(newSubcategory);
 							entity.SaveChanges();
-							return RedirectToAction("AddSubcategory", "Admin");
 						}
 						else
 						{
@@ -77,27 +88,22 @@ namespace ClothesShop.Controllers
 					}
 				}
 			}
-			return View(model);
+
+			return RedirectToAction("SubCategories");
 		}
 
-		public ActionResult RemoveCategory()
-		{
-			return View(new RemoveCategoryModel() { Categories = GetAllCategories() });
-		}
-
-		[HttpPost]
-		public ActionResult RemoveCategory(RemoveCategoryModel model)
+		[HttpGet]
+		public ActionResult RemoveCategory(int id)
 		{
 			if (ModelState.IsValid)
 			{
 				using (ClothesShopEntities entity = new ClothesShopEntities())
 				{
-					Category category = entity.Categories.FirstOrDefault(c => c.ID == model.ID);
+					Category category = entity.Categories.FirstOrDefault(c => c.ID == id);
 					if (category != null)
 					{
 						entity.Categories.DeleteObject(category);
 						entity.SaveChanges();
-						return RedirectToAction("RemoveCategory", "Admin");
 					}
 					else
 					{
@@ -105,27 +111,22 @@ namespace ClothesShop.Controllers
 					}
 				}
 			}
-			return View(model);
+
+			return RedirectToAction("Categories");
 		}
 
-		public ActionResult RemoveSubcategory()
-		{
-			return View(new RemoveSubcategoryModel() { Subcategories = GetAllSubcategories() });
-		}
-
-		[HttpPost]
-		public ActionResult RemoveSubcategory(RemoveSubcategoryModel model)
+		[HttpGet]
+		public ActionResult RemoveSubCategory(int id)
 		{
 			if (ModelState.IsValid)
 			{
 				using (ClothesShopEntities entity = new ClothesShopEntities())
 				{
-					SubCategory subcategory = entity.SubCategories.FirstOrDefault(c => c.ID == model.ID);
+					SubCategory subcategory = entity.SubCategories.FirstOrDefault(c => c.ID == id);
 					if (subcategory != null)
 					{
 						entity.SubCategories.DeleteObject(subcategory);
 						entity.SaveChanges();
-						return RedirectToAction("RemoveSubcategory", "Admin");
 					}
 					else
 					{
@@ -133,24 +134,23 @@ namespace ClothesShop.Controllers
 					}
 				}
 			}
-			return View(model);
+			return RedirectToAction("SubCategories");
 		}
 
-		private List<AddCategoryModel> GetAllCategories()
+		private List<CategoryModel> GetAllCategories()
 		{
 			using (ClothesShopEntities entity = new ClothesShopEntities())
 			{
-				return new List<AddCategoryModel>(entity.Categories.Select(category => new AddCategoryModel() { Name = category.CategoryName, ID = category.ID }));
+				return new List<CategoryModel>(entity.Categories.Select(category => new CategoryModel() { Name = category.CategoryName, ID = category.ID }));
 			}
 		}
 
-		private List<AddSubcategoryModel> GetAllSubcategories()
+		private List<SubcategoryModel> GetAllSubcategories()
 		{
 			using (ClothesShopEntities entity = new ClothesShopEntities())
 			{
-				return new List<AddSubcategoryModel>(entity.SubCategories.Select(subcategory => new AddSubcategoryModel()
-					{ SubcategoryName = subcategory.Category.CategoryName + " | " + subcategory.SubCategoryName, ID = subcategory.ID }));
+				return new List<SubcategoryModel>(entity.SubCategories.Select(subcategory => new SubcategoryModel() { SubcategoryName = subcategory.Category.CategoryName + " | " + subcategory.SubCategoryName, ID = subcategory.ID }));
 			}
 		}
-    }
+	}
 }

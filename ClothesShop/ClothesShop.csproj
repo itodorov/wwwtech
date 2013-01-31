@@ -176,19 +176,19 @@
     <Content Include="Views\Basket\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Categories.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\SubCategories.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\AdminMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\AddCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\AddSubcategory.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Admin\RemoveCategory.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Admin\RemoveSubcategory.cshtml" />
+    <Content Include="Views\Admin\AddSubCategory.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

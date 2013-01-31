@@ -477,37 +477,4 @@ bg=green</panel_attributes>
 </panel_attributes>
     <additional_attributes/>
   </element>
-  <element>
-    <type>com.umlet.element.Actor</type>
-    <coordinates>
-      <x>981</x>
-      <y>558</y>
-      <w>90</w>
-      <h>108</h>
-    </coordinates>
-    <panel_attributes>ninja</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Actor</type>
-    <coordinates>
-      <x>1008</x>
-      <y>513</y>
-      <w>90</w>
-      <h>108</h>
-    </coordinates>
-    <panel_attributes>karateka</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Actor</type>
-    <coordinates>
-      <x>1035</x>
-      <y>558</y>
-      <w>90</w>
-      <h>108</h>
-    </coordinates>
-    <panel_attributes>ninja</panel_attributes>
-    <additional_attributes/>
-  </element>
 </diagram>
