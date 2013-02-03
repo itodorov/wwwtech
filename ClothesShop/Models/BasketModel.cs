@@ -9,9 +9,9 @@ namespace ClothesShop.Models
     {
         public ProductModel Product {get;set;}
         public int Quantity {get;set;}
-        public int Size {get;set;}
+        public int? Size {get;set;}
         
-        public BasketItem(ProductModel product, int quantity, int size)
+        public BasketItem(ProductModel product, int quantity, int? size)
         {
             this.Product = product;
             this.Quantity = quantity;

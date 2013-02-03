@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ClothesShopModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="ClothesShopModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ClothesShopModelStoreContainer">
           <EntitySet Name="Categories" EntityType="ClothesShopModel.Store.Categories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Images" EntityType="ClothesShopModel.Store.Images" store:Type="Tables" Schema="dbo" />
@@ -67,6 +67,7 @@
           <Property Name="OrderID" Type="int" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Size" Type="int" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -85,8 +86,8 @@
           <Property Name="No" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="NameEN" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Description" Type="text" />
-          <Property Name="DescriptionEN" Type="text" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="DescriptionEN" Type="ntext" />
           <Property Name="Price" Type="money" Nullable="false" />
           <Property Name="Weight" Type="numeric" Nullable="false" />
           <Property Name="Special" Type="bit" Nullable="false" />
@@ -130,7 +131,9 @@
           <Property Name="IsAdmin" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Images_Products">
-          <End Role="Products" Type="ClothesShopModel.Store.Products" Multiplicity="1" />
+          <End Role="Products" Type="ClothesShopModel.Store.Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Images" Type="ClothesShopModel.Store.Images" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
@@ -142,7 +145,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderedProducts_Orders">
-          <End Role="Orders" Type="ClothesShopModel.Store.Orders" Multiplicity="1" />
+          <End Role="Orders" Type="ClothesShopModel.Store.Orders" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="OrderedProducts" Type="ClothesShopModel.Store.OrderedProducts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Orders">
@@ -166,7 +171,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_Users">
-          <End Role="Users" Type="ClothesShopModel.Store.Users" Multiplicity="1" />
+          <End Role="Users" Type="ClothesShopModel.Store.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Orders" Type="ClothesShopModel.Store.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -178,7 +185,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Products_SubCategories">
-          <End Role="SubCategories" Type="ClothesShopModel.Store.SubCategories" Multiplicity="1" />
+          <End Role="SubCategories" Type="ClothesShopModel.Store.SubCategories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Products" Type="ClothesShopModel.Store.Products" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SubCategories">
@@ -190,7 +199,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Quantities_Products">
-          <End Role="Products" Type="ClothesShopModel.Store.Products" Multiplicity="1" />
+          <End Role="Products" Type="ClothesShopModel.Store.Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Quantities" Type="ClothesShopModel.Store.Quantities" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
@@ -202,7 +213,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SubCategories_Categories">
-          <End Role="Categories" Type="ClothesShopModel.Store.Categories" Multiplicity="1" />
+          <End Role="Categories" Type="ClothesShopModel.Store.Categories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SubCategories" Type="ClothesShopModel.Store.SubCategories" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categories">
@@ -213,8 +226,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ClothesShopModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -284,6 +296,7 @@
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="ClothesShopModel.FK_OrderedProducts_Orders" FromRole="OrderedProducts" ToRole="Orders" />
           <NavigationProperty Name="Product" Relationship="ClothesShopModel.FK_OrderedProducts_Products" FromRole="OrderedProducts" ToRole="Products" />
+          <Property Type="Int32" Name="Size" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -304,8 +317,8 @@
           <Property Name="No" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="NameEN" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="DescriptionEN" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Weight" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="Special" Type="Boolean" Nullable="false" />
@@ -456,7 +469,8 @@
             <ScalarProperty Name="FileName" ColumnName="FileName" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="OrderedProducts"><EntityTypeMapping TypeName="ClothesShopModel.OrderedProduct"><MappingFragment StoreEntitySet="OrderedProducts">
-            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
             <ScalarProperty Name="OrderID" ColumnName="OrderID" />
             <ScalarProperty Name="ProductID" ColumnName="ProductID" />
             <ScalarProperty Name="Quantity" ColumnName="Quantity" />

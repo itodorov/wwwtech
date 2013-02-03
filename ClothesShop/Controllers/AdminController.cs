@@ -353,6 +353,46 @@ namespace ClothesShop.Controllers
 
 		#endregion
 
+		#region Orders
+
+		[HttpGet]
+		public ActionResult ViewOrders()
+		{
+			return ViewOrders(DateTime.Now.Date, DateTime.Now.Date);
+		}
+
+		[HttpPost]
+		public ActionResult ViewOrders(DateTime startDate, DateTime endDate)
+		{
+			OrdersModel model = new OrdersModel(startDate, endDate);
+			endDate = endDate.Date + new TimeSpan(1, 0, 0, 0);
+			using (ClothesShopEntities entity = new ClothesShopEntities())
+			{
+				model.AddRange(entity.Orders.Where(order => order.OrderDate >= startDate && order.OrderDate <= endDate).OrderBy(order => order.OrderDate)
+					.Select(order => new OrderItem() { Date = order.OrderDate, ID = order.ID, Username = order.User.Username }));
+			}
+
+			return View(model);
+		}
+
+		[HttpGet]
+		public ActionResult OrderDetails(int id)
+		{
+			using (ClothesShopEntities entity = new ClothesShopEntities())
+			{
+				BasketModel model = new BasketModel();
+				Order order = entity.Orders.Where(o => o.ID == id).FirstOrDefault();
+				if (order != null)
+				{
+					model.AddRange(order.OrderedProducts.Select(op => new BasketItem(new ProductModel(op.Product), op.Quantity, op.Size)));
+				}
+
+				return View(model);
+			}
+		}
+
+		#endregion
+
 		private bool IsAdmin()
 		{
 			return Object.Equals(Session["IsAdmin"], true);

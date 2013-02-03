@@ -1,0 +1,58 @@
+﻿@model ClothesShop.Models.BasketModel
+
+@{
+    ViewBag.Title = "Order Details";
+}
+
+<h2>OrderDetails</h2>
+
+<table id="basketList" cellpadding = "0" cellspacing="0">
+<tr>
+    <th>
+        Продукт
+    </th>
+    <th>
+        Размер
+    </th>
+    <th>
+        Количество
+    </th>
+    <th>
+        Цена
+    </th>
+</tr>
+@{
+    int i = 0;
+	decimal totalPrice = 0m;
+}
+        
+@foreach (var item in Model)
+{
+    <tr class = "@String.Format("{0}", i % 2 == 0 ? "even" : "odd")">
+        <td>
+            @item.Product.Name
+        </td>
+        <td>
+            @item.Size
+        </td>
+        <td>
+            @item.Quantity
+        </td>
+        <td>
+            @((Model[i].Product.Price * Model[i].Quantity).ToString("C2"))
+        </td>
+    </tr>
+	totalPrice += Model[i].Product.Price * Model[i].Quantity;
+    i++;
+}
+	<tr class="totalRow">
+		<td></td>
+		<td></td>
+		<td>
+        Total price:
+		</td>
+		<td>
+			@totalPrice.ToString("C2")
+		</td>
+	</tr>
+</table>

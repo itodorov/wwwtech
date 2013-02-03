@@ -249,6 +249,8 @@
     <None Include="Lightbox\js\.DS_Store" />
     <None Include="Lightbox\README.markdown" />
     <Content Include="Views\Basket\CheckOut.cshtml" />
+    <Content Include="Views\Admin\ViewOrders.cshtml" />
+    <Content Include="Views\Admin\OrderDetails.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
