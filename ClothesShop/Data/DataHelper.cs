@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Script.Serialization;
+using ClothesShop.Models;
 
 namespace ClothesShop.Data
 {
@@ -55,10 +56,62 @@ namespace ClothesShop.Data
 			}
 		}
 
-        public static ClothesShop.Product GetProduct(int productId)
+        public static Product GetProduct(int productId)
         {
             ClothesShopEntities entities = new ClothesShopEntities();
             return entities.Products.Where(x => x.ID == productId).FirstOrDefault();
         }
+
+		public static List<ProductModel> GetAllProducts(int? categoryId = null, int? subCategoryId = null)
+		{
+			using (ClothesShopEntities entity = new ClothesShopEntities())
+			{
+				if (subCategoryId != null && subCategoryId.HasValue)
+				{
+					return new List<ProductModel>(entity.Products.Where(x => x.SubCategoryID == subCategoryId.Value).Select(x => new ProductModel() { Entity = x }));
+				}
+				else if (categoryId != null && categoryId.HasValue)
+				{
+					return new List<ProductModel>(entity.Products.Where(x => x.SubCategory.CategoryID == categoryId.Value).Select(x => new ProductModel() { Entity = x }));
+				}
+				else
+				{
+					return new List<ProductModel>(entity.Products.Select(x => new ProductModel() { Entity = x }));
+				}
+			}
+		}
+
+		public static List<CategoryModel> GetAllCategories()
+		{
+			using (ClothesShopEntities entity = new ClothesShopEntities())
+			{
+				return new List<CategoryModel>(entity.Categories.Select(category => new CategoryModel() { Name = category.CategoryName, ID = category.ID }));
+			}
+		}
+
+		public static List<SubcategoryModel> GetAllSubcategories()
+		{
+			using (ClothesShopEntities entity = new ClothesShopEntities())
+			{
+				return new List<SubcategoryModel>(entity.SubCategories.Select(subcategory => new SubcategoryModel() { SubcategoryName = subcategory.SubCategoryName, ID = subcategory.ID }));
+			}
+		}
+
+		public static List<PictureModel> GetProductImages(int id)
+		{
+			using (ClothesShopEntities entity = new ClothesShopEntities())
+			{
+				return new List<PictureModel>(entity.Products.Where(x => x.ID == id).First().Images.Select(x => new PictureModel() { ProductId = x.ProductID, ID = x.ID, FileName = x.FileName }));
+			}
+		}
+
+		public static List<QuantityModel> GetProductQuantities(int id)
+		{
+			using (ClothesShopEntities entity = new ClothesShopEntities())
+			{
+				return new List<QuantityModel>(entity.Products.Where(x => x.ID == id).First().Quantities.Select(x => new QuantityModel() { ProductId = x.ProductID, ID = x.ID, Quantity = x.Quantity1, Size = (int)x.Size }));
+			}
+		}
+
     }
 }

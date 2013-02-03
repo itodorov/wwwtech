@@ -13,13 +13,18 @@ namespace ClothesShop.Controllers
         //
         // GET: /Basket/
 
-        public ActionResult Index()
-        {
-            if (!IsAuthenticated())
-            {
-                return RedirectToAction("LogOn", "Account");
-            }
+		protected override void OnActionExecuting(ActionExecutingContext filterContext)
+		{
+			if (!this.IsAuthenticated())
+			{
+				filterContext.Result = new RedirectResult("/Account/Logon?returnUrl=" + Request.Url.LocalPath, false);
+			}
 
+			base.OnActionExecuting(filterContext);
+		}
+
+        public ActionResult Index()
+        { 
             if ((Session["Basket"] is BasketModel))
             {
                 return View((BasketModel)Session["Basket"]);    
@@ -30,12 +35,7 @@ namespace ClothesShop.Controllers
 
         [HttpGet]
         public ActionResult AddToCart(int id)
-        {
-            if (!IsAuthenticated())
-            {
-                return RedirectToAction("LogOn", "Account");
-            }
-
+        { 
             if(!(Session["Basket"] is BasketModel))
             {
                 Session["Basket"] = new BasketModel();

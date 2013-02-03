@@ -9,6 +9,9 @@ namespace ClothesShop.Models
 {
     public class LogOnModel
     {
+		[Editable(false)]
+		public string ReturnUrl { get; set; }
+
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }

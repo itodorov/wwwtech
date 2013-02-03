@@ -15,17 +15,18 @@ namespace ClothesShop.Controllers
         //
         // GET: /Account/LogOn
 
-        public ActionResult LogOn()
+		public ActionResult LogOn(string returnUrl)
         {
-            return View();
+			return View(new LogOnModel() { ReturnUrl = returnUrl });
         }
 
         //
         // POST: /Account/LogOn
 
         [HttpPost]
-        public ActionResult LogOn(LogOnModel model, string returnUrl)
+        public ActionResult LogOn(LogOnModel model)
         {
+			string returnUrl = model.ReturnUrl;
             if (ModelState.IsValid)
             {
 				using (ClothesShopEntities entities = new ClothesShopEntities())
