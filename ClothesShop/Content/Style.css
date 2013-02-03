@@ -158,12 +158,33 @@ hr
      height:20px;
  } 
  
+ #basketList tr.totalRow
+ {
+    background-color: #9BC3FF;
+    height: 20px;
+ } 
+ 
+ #basketList tr.totalRow td
+ {
+    font-weight:bold;
+ } 
+ 
  #removeBtn
  {
      background-image: url("delete.png");
      background-repeat: no-repeat;
      width: 24px;
      height: 24px;
+     float:right;
+ }
+ 
+ #checkoutBtn
+ {
+     background-image: url("checkout.png");
+     background-repeat: no-repeat;
+     margin-top:20px;
+     width: 210px;
+     height: 46px;
      float:right;
  }
  

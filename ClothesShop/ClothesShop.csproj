@@ -89,6 +89,7 @@
   <ItemGroup>
     <Content Include="Content\arrow.png" />
     <Content Include="Content\cart.png" />
+    <Content Include="Content\checkout.png" />
     <Content Include="Content\delete.png" />
     <Content Include="Content\flowers-left.png" />
     <Content Include="Content\flowers-right.png" />
@@ -247,6 +248,7 @@
     <None Include="Lightbox\images\.DS_Store" />
     <None Include="Lightbox\js\.DS_Store" />
     <None Include="Lightbox\README.markdown" />
+    <Content Include="Views\Basket\CheckOut.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

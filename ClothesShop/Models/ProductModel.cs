@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ClothesShop.Models
 {
-	public enum QuantityType
+	public enum QuantityType : byte
 	{
-		Single,
-		Multiple,
-		All
+		Unlimited,
+		Limited,
+		LimitedBySize
 	}
 
     public class QuantityModel

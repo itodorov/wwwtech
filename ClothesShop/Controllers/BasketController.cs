@@ -34,20 +34,6 @@ namespace ClothesShop.Controllers
         }
 
 		[HttpGet]
-		public ActionResult AddToCart(int id)
-		{
-			if (!(Session["Basket"] is BasketModel))
-			{
-				Session["Basket"] = new BasketModel();
-			}
-
-			ProductModel product = new ProductModel(DataHelper.GetProduct(id));
-			((BasketModel)Session["Basket"]).Add(new BasketItem(product, 1, 0));
-
-			return RedirectToAction("Index");
-		}
-
-		[HttpGet]
 		public ActionResult RemoveFromCart(int id, int quantity, int size)
 		{
 			if (!(Session["Basket"] is BasketModel))
@@ -66,7 +52,46 @@ namespace ClothesShop.Controllers
 			return RedirectToAction("Index");
 		}
 
+        [HttpGet]
+        public ActionResult AddToCart(int id)
+        {
+            ProductModel product = new ProductModel(DataHelper.GetProduct(id));
+            ((BasketModel)Session["Basket"]).Add(new BasketItem(product, 1, 0));
+		
+			return RedirectToAction("Index");
+		}
 
+		public ActionResult CheckOut()
+		{
+			bool success = false;
+			BasketModel basket = Session["Basket"] as BasketModel;
+			if (basket != null)
+			{
+				using (ClothesShopEntities entity = new ClothesShopEntities())
+				{
+					Order order = new Order() { OrderDate = DateTime.Now, UserID = (int)Session["UserID"] };
+					foreach (BasketItem item in basket)
+					{
+						OrderedProduct orderedProduct = new OrderedProduct() { ProductID = item.Product.ID, Quantity = item.Quantity };
+						order.OrderedProducts.Add(orderedProduct);
+					}
+
+					entity.Orders.AddObject(order);
+					try
+					{
+						entity.SaveChanges();
+						success = true;
+					}
+					catch
+					{
+						success = false;
+					}
+					basket.Clear();
+				}
+			}
+
+			return View(success);
+		}
 
         private bool IsAuthenticated()
         {

@@ -35,6 +35,7 @@ namespace ClothesShop.Controllers
 					if (user != null)
 					{
 						Session["Username"] = model.UserName;
+						Session["UserID"] = user.ID;
 						Session["IsAuthenticated"] = true;
 						Session["IsAdmin"] = user.IsAdmin;
 						Session["Basket"] = new BasketModel();
