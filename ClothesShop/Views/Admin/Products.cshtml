@@ -4,11 +4,11 @@
     ViewBag.Title = "Products";
 }
 
-<div id="loginContainer">
+<div id="adminMenu">
 	@Html.Partial("AdminMenu")
 </div>
 
-<h2>ViewPage1</h2>
+<h2>View Products</h2>
 
 @using (Html.BeginForm("Products", "Admin", FormMethod.Get))
 {
@@ -18,17 +18,12 @@
     @Html.DropDownList("id", categories, "Category")
     @Html.DropDownList("subid", subcategories, "Category")    
     
-    <input type="submit" value="Filter" />
+    <input type="submit" value="Filter" id="filterButton" />
 }
 
-<p>
-    @Html.ActionLink("Create New", "AddProduct")
-</p>
 <table>
-    <tr>
-        <th>
-            SubCategoryID
-        </th>
+    <tr> 
+        <th></th>
         <th>
             Number
         </th>
@@ -36,76 +31,44 @@
             Name
         </th>
         <th>
-            NameEN
-        </th>
-        <th>
-            Description
-        </th>
-        <th>
-            DescriptionEN
-        </th>
-        <th>
             Price
-        </th>
-        <th>
-            Weight
-        </th>
+        </th> 
         <th>
             Special
-        </th>
-        <th>
-            QuantityType
-        </th>
-        <th>
-            Quantity
-        </th>
+        </th> 
         <th></th>
     </tr>
 
 @foreach (var item in Model)
 {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubCategoryID)
-        </td>
+    <tr> 
+    <td>
+            @Html.ActionLink(" ", "RemoveProduct", new { id = item.ID }, new { id = "removeBtn", title = "Remove", onclick = "return confirm('Are you sure want to delete this?');" })
+            @Html.ActionLink(" ", "ViewProduct", "Product", new { id = item.ID }, new { id = "detailsBtn", title="Details"}) 
+            @Html.ActionLink(" ", "EditProduct", new { id = item.ID }, new { id = "editBtn", title = "Edit" }) 
+    </td>
         <td>
             @Html.DisplayFor(modelItem => item.Number)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NameEN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescriptionEN)
-        </td>
+        </td> 
         <td>
             @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Weight)
-        </td>
+        </td> 
         <td>
             @Html.DisplayFor(modelItem => item.Special)
-        </td>
+        </td> 
         <td>
-            @Html.DisplayFor(modelItem => item.QuantityType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "EditProduct", new { id = item.ID }) |
-            @Html.ActionLink("Details", "ViewProduct", "Product", new { id = item.ID }, null) |
             @Html.ActionLink("Pictures", "ProductImages", new { id = item.ID }) |
-            @Html.ActionLink("Sizes", "ProductQuantity", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "RemoveProduct", new { id = item.ID })
+            @Html.ActionLink("Sizes", "ProductQuantity", new { id = item.ID })
         </td>
     </tr>
 }
 
 </table>
+
+
+<p>
+    @Html.ActionLink(" ", "AddProduct", null, new { id = "addBtn" })
+</p>

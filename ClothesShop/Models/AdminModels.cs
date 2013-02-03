@@ -23,6 +23,9 @@ namespace ClothesShop.Models
 		[Display(Name = "Subcategory name")]
 		public string SubcategoryName { get; set; }
 
+		[Editable(false)]
+		public string CategoryName { get; set; }
+
 		public int ID { get; set; }
 
 		[Required]

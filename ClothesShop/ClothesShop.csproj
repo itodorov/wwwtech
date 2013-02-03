@@ -87,10 +87,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\add.png" />
     <Content Include="Content\arrow.png" />
     <Content Include="Content\cart.png" />
     <Content Include="Content\checkout.png" />
     <Content Include="Content\delete.png" />
+    <Content Include="Content\details.png" />
+    <Content Include="Content\edit.png" />
     <Content Include="Content\flowers-left.png" />
     <Content Include="Content\flowers-right.png" />
     <Content Include="Content\ListView.css" />

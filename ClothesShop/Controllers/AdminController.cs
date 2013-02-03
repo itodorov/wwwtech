@@ -259,6 +259,7 @@ namespace ClothesShop.Controllers
 		public ActionResult ProductImages(int id)
 		{
 			ViewBag.ProductId = id;
+			ViewBag.ProductNo = DataHelper.GetProduct(id).No;
 			return View(DataHelper.GetProductImages(id));
 		}
 
@@ -319,6 +320,7 @@ namespace ClothesShop.Controllers
 		public ActionResult ProductQuantity(int id)
 		{
 			ViewBag.ProductId = id;
+			ViewBag.ProductNo = DataHelper.GetProduct(id).No;
 			return View(DataHelper.GetProductQuantities(id));
 		}
 

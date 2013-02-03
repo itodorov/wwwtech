@@ -4,36 +4,37 @@
     ViewBag.Title = "SubCategories";
 }
 
-<div id="loginContainer">
+<div id="adminMenu">
 	@Html.Partial("AdminMenu")
 </div>
 
 <h2>SubCategories</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+ 
 <table>
-    <tr>
-        <th>
-            SubcategoryName
-        </th>
-        <th>
-            CategoryID
-        </th>
+    <tr> 
         <th></th>
+        <th>
+            Category
+        </th>
+        <th>
+            Subcategory
+        </th> 
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.SubcategoryName)
+            @Html.ActionLink(" ", "RemoveSubCategory", new { id = item.ID }, 
+            new { onclick = "return confirm(\"Are you sure want to delete this?\")", id="removeBtn", title="Remove" })
         </td>
         <td>
-            @Html.ActionLink("Delete", "RemoveSubCategory", new { id = item.ID }, new { onclick = "return confirm(\"Are you sure want to delete this?\")" })
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubcategoryName)
         </td>
     </tr>
 }
 
 </table>
-@Html.ActionLink("Add new", "AddSubCategory")
+@Html.ActionLink(" ", "AddSubCategory", null, new { id = "addBtn" })
