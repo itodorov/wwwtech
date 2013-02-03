@@ -5,18 +5,43 @@
 
 <fieldset>
     <legend>Неща в Кошница</legend>
-    <table>
-        <tr>
-            <th>
-            </th>
-        </tr>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @item.Product.Name
-                </td>
-            </tr>
-        }
-    </table>
+	@if (Model.Count > 0)
+ {
+		<table>
+			<tr>
+				<th>
+				</th>
+			</tr>
+			@{
+				decimal totalPrice = 0m;
+				for (int i = 0; i < Model.Count; i++)
+				{
+					<tr>
+						<td>
+							@Model[i].Product.Name
+						</td>
+						<td>
+							@Html.ActionLink("Remove", "RemoveItem", new { index = i })
+						</td>
+					</tr>
+					totalPrice += @Model[i].Product.Price * @Model[i].Quantity;
+				}
+				<tr>
+					<td>
+						Total price:
+					</td>
+					<td>
+						@totalPrice.ToString("N2")
+					</td>
+				</tr>
+			}
+		</table>
+		<div>
+			@Html.ActionLink("Check out", "CheckOut")
+		</div>
+ }
+ else
+ {
+		<div>Basket is empty.</div>
+	 }
 </fieldset>

@@ -1,0 +1,14 @@
+﻿@model System.Boolean
+@{
+    ViewBag.Title = "Check Out";
+}
+
+<META HTTP-EQUIV="Refresh" CONTENT="1;URL=@(Url.Action("Index", "Basket"))">
+@if (Model)
+{
+	<div>Your order was successful.</div>
+}
+else
+{
+	<div style="color:red">There was a problem with your order.</div>
+}
