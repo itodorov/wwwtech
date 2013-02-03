@@ -1,62 +1,188 @@
 ﻿body, h1, h2, h3
 {
 	font-family:Segoe UI,Arial,Verdana,Sans Serif;
+	font-weight:lighter;
 }
 a
 {
 	color:#666666;
 	text-decoration:none;
-}
-header
-{
-	min-height:120px;
-}
+} 
+
 footer
 {
 	text-align:center;
 	background-color: #e1e1e1;
-	margin-top:30px;
-	margin-bottom:5px;
+    width:970px;
+	margin:auto; 
 }
+
 #pageContainer
 {
 	width:970px;
 	margin:auto; 
-}
-#logoContainer
-{
-	padding:10px;
-	height:100px;
-	float:left;
-}
+} 
+
 #loginContainer
 {
 	float:right;
-	padding:10px;
+	padding:8px;
 	text-align: right;
+	min-width:157px;
+	background-image: url('/Content/login_bg.png');
+	color:White;
 }
-#pageTitle
+
+#loginContainer a, #welcome a
+{
+    color:White;
+}
+
+#loginContainer a:hover, #welcome a:hover
+{
+    color:#cccccc;
+}
+
+header
 {
 	min-height:68px;
-	padding:35px;
-	background-color: #6D9EFF;
+	padding:10px;
+	background-color: #65B504;
 	font-family: inherit;
 	font-size: 32pt;
-	
+	color:White;
 	vertical-align: middle;
 }
+
+#pageTitle
+{
+     
+}
+
 #pageContent
 {
-	margin-top:20px;
+	margin-top:20px; 
+	background-color: #E6E6E6;
 }
+
 #mainNav
 {
 	float:left;
 	min-width:200px; 
-	background-color: #E6E6E6;
 }
+
 #mainContent
 {
 	float:left;
 	width:770px; 
+	min-height:600px;
+	background-color: #FFFFFF;
+}
+
+#flowersLeft
+{
+    background:url("flowers-left.png") no-repeat fixed 0 400px transparent; 
+}
+
+#flowersRight
+{
+    background:url("flowers-right.png") no-repeat fixed 111% -174px transparent; 
+}
+
+#welcome
+{
+    float:right;
+    text-align:right;
+    font-size:12pt;
+    position:relative;
+    top:-14px;
+}
+
+hr
+{
+    border:solid 1px white;
+}
+ 
+ 
+ h2:before
+ {
+     content: url("/Content/arrow.png");
+     padding-left:4px;
+     padding-right:4px;
+ }
+ 
+ #listView
+ {
+     border: none;
+ }
+ 
+ #productDetails
+ {
+     padding-left:10px;
+ }
+ 
+ #productDescription
+ {
+     width:400px;
+ }
+ 
+ #cartBtn
+ {
+     background-image: url("cart.png");
+     background-repeat:no-repeat;
+     width: 250px;
+     height: 46px;
+     float:right;
+ }
+ 
+ #basketList
+ {
+     width:100%;
+ }
+ 
+ #basketList tr td
+ {
+     text-align:center; 
+      height:40px;
+ } 
+ 
+ #basketList tr.even
+ {
+    background-color: #CFFFAB;
+    height: 20px;
+ } 
+ 
+ #basketList tr.odd
+ {
+     background-color: #ececec;
+     height:20px;
+ } 
+ 
+ #removeBtn
+ {
+     background-image: url("delete.png");
+     background-repeat: no-repeat;
+     width: 24px;
+     height: 24px;
+     float:right;
+ }
+ 
+#adminMenu
+{
+	float:right;
+	padding:8px;
+	text-align: right;
+	min-width:280px;
+	background-image: url('/Content/admin_bg.png');
+	color:White;
+}
+
+#adminMenu a, #welcome a
+{
+    color:White;
+}
+
+#adminMenu a:hover, #welcome a:hover
+{
+    color:#cccccc;
 }

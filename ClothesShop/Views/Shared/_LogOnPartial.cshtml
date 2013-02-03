@@ -1,14 +1,14 @@
 ﻿@if(Object.Equals(Session["IsAuthenticated"], true)) {
-    <text>Welcome <strong>@Session["Username"]</strong>!
-    [ @Html.ActionLink("Log Off", "LogOff", "Account") ]</text> <br/>
-     
     if(Object.Equals(Session["IsAdmin"], true)) 
     {      
         <text>  
         @Html.ActionLink("ADMIN", "Index", "Admin") | 
         </text>
     }
-    @Html.ActionLink("BASKET", "Index", "Basket")
+    
+    ClothesShop.Models.BasketModel basket = (ClothesShop.Models.BasketModel)Session["Basket"];
+    
+    @Html.ActionLink(String.Format("BASKET({0})", basket.Count), "Index", "Basket")
 }
 else
 {

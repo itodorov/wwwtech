@@ -1,0 +1,5 @@
+﻿@if(Object.Equals(Session["IsAuthenticated"], true)) 
+{
+    <text>Welcome <strong>@Session["Username"]</strong>!
+    [ @Html.ActionLink("Log Off", "LogOff", "Account") ]</text> <br/>
+}

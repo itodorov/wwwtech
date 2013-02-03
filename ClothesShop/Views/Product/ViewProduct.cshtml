@@ -3,65 +3,101 @@
 @{
     ViewBag.Title = "Product Details";
 }
+	<link rel="shortcut icon" type="image/ico" href="/Lightbox/images/favicon.gif" />	
+	<link rel="stylesheet" href="/Lightbox/css/screen.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/Lightbox/css/lightbox.css" type="text/css" media="screen" />
+    <link href='http://fonts.googleapis.com/css?family=Fredoka+One|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <script src="/Lightbox/js/jquery-ui-1.8.18.custom.min.js"></script>
+    <script src="/Lightbox/js/jquery.smooth-scroll.min.js"></script>
+    <script src="/Lightbox/js/lightbox.js"></script>
 
+<h2>Product Details</h2>
 
-<fieldset>
-    <legend>ProductModel</legend>
+<div id="productDetails">
 
-    <div class="display-label">SubCategoryID</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.SubCategoryID)
-    </div>
+    <span style="float:right;">ИМА В НАЛИЧНОСТ</span>
 
-    <div class="display-label">Number</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Number)
-    </div>
+    <h3>@Html.DisplayFor(model => model.Name)</h3>
 
-    <div class="display-label">Name</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
-    </div>
-
-    <div class="display-label">NameEN</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.NameEN)
-    </div>
-
-    <div class="display-label">Description</div>
-    <div class="display-field">
+    <div id="productDescription">
         @Html.DisplayFor(model => model.Description)
     </div>
 
-    <div class="display-label">DescriptionEN</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.DescriptionEN)
+    <br />
+
+    <span><b>Категория:</b> @Html.DisplayFor(model => model.CategoryName)</span> <br />
+    <span><b>Каталожен номер:</b> @Html.DisplayFor(model => model.Number)</span> <br />
+    <span><b>Тегло:</b> @Html.DisplayFor(model => model.Weight) </span> <br />
+    <span><b>Цена:</b> @Html.DisplayFor(model => model.Price) </span>
+
+    @if (Model.Special)
+    {
+        <div id="specialOffer">СПЕЦИАЛНА ОФЕРТА</div>
+    }
+    
+    @Html.ActionLink(" ", "AddToCart", "Basket", new { id = Model.ID }, new { id = "cartBtn" })
+
+    <div style="clear:both;padding-top:15px;">
+
+        <div class="imageRow">
+            <div class="set">
+
+                @for (int i = 0; i < Model.Pictures.Count; i++)
+                {
+                    string cl = i % 4 == 0 ? " first" : i % 4 == 3 ? " last" : "";
+                    cl = "single" + cl;
+                    <div class="@Html.Raw(cl)">
+                        <a href="/ProductPictures/@Model.Pictures[i].FileName" rel="lightbox[plants]" title="Click on the right side of the image to move forward.">
+                            <img src="/Data/Thumbnail/@Model.Pictures[i].ID?size=150" alt="Plants: image 1 0f 4 thumb" />
+                        </a>
+                    </div>
+                }
+@*
+                <div class="single first">
+                    <a href="/Lightbox/images/examples/image-3.jpg" rel="lightbox[plants]" title="Click on the right side of the image to move forward.">
+                        <img src="/Lightbox/images/examples/thumb-3.jpg" alt="Plants: image 1 0f 4 thumb" />
+                    </a>
+                </div>
+                <div class="single">
+                    <a href="/Lightbox/images/examples/image-4.jpg" rel="lightbox[plants]" title="Alternately you can press the right arrow key." >
+                        <img src="/Lightbox/images/examples/thumb-4.jpg" alt="Plants: image 2 0f 4 thumb" />
+                    </a>
+                </div>
+                <div class="single">
+                    <a href="/Lightbox/images/examples/image-5.jpg" rel="lightbox[plants]" title="The script preloads the next image in the set as you're viewing.">
+                        <img src="/Lightbox/images/examples/thumb-5.jpg" alt="Plants: image 3 0f 4 thumb" />
+                    </a>
+                </div>
+                <div class="single last">
+                    <a href="/Lightbox/images/examples/image-6.jpg" rel="lightbox[plants]" title="Click the X or anywhere outside the image to close">
+                        <img src="/Lightbox/images/examples/thumb-6.jpg" alt="Plants: image 4 0f 4 thumb" />
+                    </a>
+                </div>
+
+                <div class="single first">
+                    <a href="/Lightbox/images/examples/image-3.jpg" rel="lightbox[plants]" title="Click on the right side of the image to move forward.">
+                        <img src="/Lightbox/images/examples/thumb-3.jpg" alt="Plants: image 1 0f 4 thumb" />
+                    </a>
+                </div>
+                <div class="single">
+                    <a href="/Lightbox/images/examples/image-4.jpg" rel="lightbox[plants]" title="Alternately you can press the right arrow key." >
+                        <img src="/Lightbox/images/examples/thumb-4.jpg" alt="Plants: image 2 0f 4 thumb" />
+                    </a>
+                </div>
+                <div class="single">
+                    <a href="/Lightbox/images/examples/image-5.jpg" rel="lightbox[plants]" title="The script preloads the next image in the set as you're viewing.">
+                        <img src="/Lightbox/images/examples/thumb-5.jpg" alt="Plants: image 3 0f 4 thumb" />
+                    </a>
+                </div>
+                <div class="single last">
+                    <a href="/Lightbox/images/examples/image-6.jpg" rel="lightbox[plants]" title="Click the X or anywhere outside the image to close">
+                        <img src="/Lightbox/images/examples/thumb-6.jpg" alt="Plants: image 4 0f 4 thumb" />
+                    </a>
+                </div>*@
+
+            </div>
+        </div>
+
     </div>
 
-    <div class="display-label">Price</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Price)
-    </div>
-
-    <div class="display-label">Weight</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Weight)
-    </div>
-
-    <div class="display-label">Special</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Special)
-    </div>
-
-    <div class="display-label">QuantityType</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.QuantityType)
-    </div>
-
-    <div class="display-label">Quantity</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Quantity)
-    </div>
-
-    @Html.ActionLink("Add to cart", "AddToCart", "Basket", new { id = Model.ID }, null)
-</fieldset> 
+</div>

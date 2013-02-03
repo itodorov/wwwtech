@@ -1,92 +1,100 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <title>SWAG FASHION</title>
-    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-    <script src="http://cdn.kendostatic.com/2012.3.1114/js/kendo.all.min.js"></script>
-    <link href="@Url.Content("~/Content/Style.css")" rel="stylesheet" type="text/css" /> 
-    <link href="@Url.Content("~/Content/ListView.css")" rel="stylesheet" type="text/css" /> 
-    <link href="http://cdn.kendostatic.com/2012.3.1114/styles/kendo.common.min.css" rel="stylesheet" />
-    <link href="http://cdn.kendostatic.com/2012.3.1114/styles/kendo.metro.min.css" rel="stylesheet" />
-</head>
+    <head>
+        <title>SWAG FASHION</title>
+        <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+        <script src="http://cdn.kendostatic.com/2012.3.1114/js/kendo.all.min.js"></script>
+        <link href="@Url.Content("~/Content/Style.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/ListView.css")" rel="stylesheet" type="text/css" />
+        <link href="http://cdn.kendostatic.com/2012.3.1114/styles/kendo.common.min.css" rel="stylesheet" />
+        <link href="http://cdn.kendostatic.com/2012.3.1114/styles/kendo.metro.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="flowersLeft">
+            <div id="flowersRight">
+                <div id="pageContainer">
+                    <section>
 
-<body>
-	<div id="pageContainer">
-		<header> 
-			<div id="logoContainer">
-				<img src="@Url.Content("~/Content/logo.png")" />
-			</div>
-			<div id="loginContainer">
-				@Html.Partial("_LogOnPartial")
-			</div>
-		</header>
-		<section id="pageTitle">
-			<span>@ViewBag.Title</span>
-		</section>
-		<section id="pageContent">
-			<section id="mainNav">
-				<h3>Products</h3>
-				<hr>
-				<div id="navTreeView">
-					 
-				</div>
-				<script>
-				    var serviceRoot = "http://localhost:3684/Data/Categories";
-				    homogeneous = new kendo.data.HierarchicalDataSource({
-				        data: @Html.Raw(ClothesShop.Data.DataHelper.GetCategoriesTree()) ,
-				        schema: {
-				            model: { 
-				                children: "ChildNodes",
-								hasChildren: "HasChildren"
-				            }
-				        }
-				    });
+                        <div id="loginContainer">
+                            @Html.Partial("_LogOnPartial")
+                        </div>
+                        <div style="clear:both"> </div>
+                    </section>
+                    <header>
+                        <div id="pageTitle">@ViewBag.Title</div>
+                        <div id="logoContainer">
+                            <img src="@Url.Content("~/Content/logo.png")" />
+                        </div>
+                        <div id="welcome">@Html.Partial("_WelcomePartial")</div>
+                    </header>
+                    <section id="pageContent">
+                        <section id="mainNav">
+                            <h2>Products</h2>
+                            <hr>
+                            <div id="navTreeView">
 
-					function onSelect(e) {
-						var item = $("#navTreeView").data("kendoTreeView").dataItem(e.node);
-						if(!item.HasChildren) {
-                            if($("#listView").length == 0)
-                            {
-                                document.location = "/Home";
-                                return;
-                            }
-							var dataSource = new kendo.data.DataSource({
-								transport: {
-									read: {
-                    					url: "/Data/Products/" + item.CategoryId,
-										dataType: "json"
-									}
-								},
-								pageSize: 15
-							});
+                            </div>
+                            <script>
+                                var serviceRoot = "http://localhost:3684/Data/Categories";
+                                homogeneous = new kendo.data.HierarchicalDataSource({
+                                    data: @Html.Raw(ClothesShop.Data.DataHelper.GetCategoriesTree()) ,
+                                    schema: {
+                                        model: { 
+                                            children: "ChildNodes",
+                                            hasChildren: "HasChildren"
+                                        }
+                                    }
+                                });
 
-							var pager = $("#pager").data("kendoPager");
-							pager.setDataSource(dataSource);
+                                function onSelect(e) {
+                                    var item = $("#navTreeView").data("kendoTreeView").dataItem(e.node);
+                                    if (!item.HasChildren) {
+                                        if ($("#listView").length == 0) {
+                                            document.location = "/Home";
+                                            return;
+                                        }
+                                        var dataSource = new kendo.data.DataSource({
+                                            transport: {
+                                                read: {
+                                                    url: "/Data/Products/" + item.CategoryId,
+                                                    dataType: "json"
+                                                }
+                                            },
+                                            pageSize: 15
+                                        });
+                                
+                                        var pager = $("#pager").data("kendoPager");
+                                        pager.setDataSource(dataSource);
+                                
+                                        var listview = $("#listView").data("kendoListView");
+                                        listview.setDataSource(dataSource);
+                                    }
+                                };
+                                
+                                $(document).ready(function () {
+                                    $("#navTreeView").kendoTreeView({
+                                        dataSource: homogeneous,
+                                        dataTextField: ["CategoryName"],
+                                        select: onSelect
+                                    })
+                                });
+                            </script>
+                            
+                        </section>
+                        
+                        <section id="mainContent">
+                            @RenderBody()
+                        </section>
+                        <section style="clear: both;" />
+                    </section>
 
-							var listview = $("#listView").data("kendoListView");
-							listview.setDataSource(dataSource);
-						}
-					};
+                    
 
-				    $(document).ready(function () {
-				        $("#navTreeView").kendoTreeView({
-                               dataSource: homogeneous,
-                               dataTextField: ["CategoryName"],
-							   select: onSelect
-                         })
-				    });
-				</script>
-			
-			</section>
-
-			<section id="mainContent">
-                @RenderBody()
-            </section>
-        </section>
-		<section style="clear: both;"/>
-		<footer>
-			All Rights Prase (P) (For additional info see the @Html.ActionLink("About", "About", "Home") page)
-		</footer>
-	</div>
-</body>
+                </div>
+                    <footer>
+                        All Rights Reserved (R) (For additional info see the @Html.ActionLink("About", "About", "Home") page)
+                    </footer>
+            </div>
+        </div>
+    </body>
 </html>

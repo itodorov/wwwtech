@@ -72,7 +72,13 @@ namespace ClothesShop.Models
         public int Quantity { get; set; }
 
 		[Editable(false)]
+		public string CategoryName { get; private set; }
+
+		[Editable(false)]
         public List<QuantityModel> Quantities { get; set; }
+
+		[Editable(false)]
+		public List<PictureModel> Pictures { get; set; }
 
         public ProductModel(ClothesShop.Product prod)
         {
@@ -96,7 +102,14 @@ namespace ClothesShop.Models
 				this.Special = prod.Special;
 				this.QuantityType = prod.QuantityType;
 				this.Quantity = prod.Quantity;
-				this.Quantities = new List<QuantityModel>(); 
+				this.Quantities = new List<QuantityModel>();
+
+				if (prod.SubCategory != null && prod.SubCategory.Category != null)
+				{
+					this.CategoryName = prod.SubCategory.Category.CategoryName + " - " + prod.SubCategory.SubCategoryName;
+				}
+
+				this.Pictures = prod.Images.Select(x => new PictureModel(){ FileName = x.FileName, ID = x.ID, ProductId = x.ProductID}).ToList();
 
 				foreach (ClothesShop.Quantity quan in prod.Quantities)
 				{
