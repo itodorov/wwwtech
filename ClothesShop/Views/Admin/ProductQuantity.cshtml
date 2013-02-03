@@ -1,38 +1,38 @@
 ﻿@model IEnumerable<ClothesShop.Models.QuantityModel>
 
 @{
-    ViewBag.Title = "ProductQuantity";
+    ViewBag.Title = "Product Quantity";
 }
 
-<h2>ProductQuantity</h2>
+<div id="adminMenu">
+	@Html.Partial("AdminMenu")
+</div>
+
+<h2>Quantity for Product @ViewBag.ProductNo</h2>
 
 <table>
     <tr>
-        <th>
-            ProductId
+        <th> 
         </th>
         <th>
             Size
         </th>
         <th>
             Quantity
-        </th>
-        <th></th>
+        </th> 
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductId)
+    <tr> 
+    
+        <td> 
+            @Html.ActionLink(" ", "DeleteQuantity", new { id = item.ID }, new { id = "removeBtn", onclick="return confirm('Are you sure want to delete this?');"})
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Size)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td> 
-            @Html.ActionLink("Delete", "DeleteQuantity", new { id=item.ID })
         </td>
     </tr>
 }
@@ -41,11 +41,21 @@
 
 @using(Html.BeginForm("AddQuantity", "Admin", FormMethod.Post))
 {
-    <span>New entry: </span>
-    <input type="hidden" name="id" value="@ViewBag.ProductId" />  <br />
-    <span>Size</span> <input type="text" name="size" /><br />
-    <span>Quantity</span> <input type="text" name="quantity" /><br />
+    <b>New entry: </b> <br />
+    <input type="hidden" name="id" value="@ViewBag.ProductId" />   
+    <span>Size</span> 
+    <input id="sizePicker" type="number" name="size" value="1" /> 
+    <span>Quantity</span> 
+    <input id="qPicker" type="number" name="quantity" value="1"/><br />
     
     <input type="submit" value="Add" />
+    
+    
+            <script>
+                $(document).ready(function () {
+                    $("#sizePicker").kendoNumericTextBox({min: 1});
+                    $("#qPicker").kendoNumericTextBox({min: 1});
+                });
+            </script>
 }
 

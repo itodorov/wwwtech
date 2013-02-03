@@ -1,209 +1,303 @@
 ﻿body, h1, h2, h3
 {
-	font-family:Segoe UI,Arial,Verdana,Sans Serif;
-	font-weight:lighter;
+    font-family: Segoe UI,Arial,Verdana,Sans Serif;
+    font-weight: lighter;
 }
 a
 {
-	color:#666666;
-	text-decoration:none;
-} 
+    color: #666666;
+    text-decoration: none;
+}
 
 footer
 {
-	text-align:center;
-	background-color: #e1e1e1;
-    width:970px;
-	margin:auto; 
+    text-align: center;
+    background-color: #e1e1e1;
+    width: 970px;
+    margin: auto;
 }
 
 #pageContainer
 {
-	width:970px;
-	margin:auto; 
-} 
+    width: 970px;
+    margin: auto;
+}
 
 #loginContainer
 {
-	float:right;
-	padding:8px;
-	text-align: right;
-	min-width:157px;
-	background-image: url('/Content/login_bg.png');
-	color:White;
+    float: right;
+    padding: 8px;
+    text-align: right;
+    min-width: 157px;
+    background-image: url('/Content/login_bg.png');
+    color: White;
 }
 
 #loginContainer a, #welcome a
 {
-    color:White;
+    color: White;
 }
 
 #loginContainer a:hover, #welcome a:hover
 {
-    color:#cccccc;
+    color: #cccccc;
 }
 
 header
 {
-	min-height:68px;
-	padding:10px;
-	background-color: #65B504;
-	font-family: inherit;
-	font-size: 32pt;
-	color:White;
-	vertical-align: middle;
+    min-height: 68px;
+    padding: 10px;
+    background-color: #65B504;
+    font-family: inherit;
+    font-size: 32pt;
+    color: White;
+    vertical-align: middle;
 }
 
 #pageTitle
 {
-     
 }
 
 #pageContent
 {
-	margin-top:20px; 
-	background-color: #E6E6E6;
+    margin-top: 20px;
+    background-color: #E6E6E6;
 }
 
 #mainNav
 {
-	float:left;
-	min-width:200px; 
+    float: left;
+    min-width: 200px;
 }
 
 #mainContent
 {
-	float:left;
-	width:770px; 
-	min-height:600px;
-	background-color: #FFFFFF;
+    float: left;
+    width: 770px;
+    min-height: 600px;
+    background-color: #FFFFFF;
 }
 
 #flowersLeft
 {
-    background:url("flowers-left.png") no-repeat fixed 0 400px transparent; 
+    background: url("flowers-left.png") no-repeat fixed 0 400px transparent;
 }
 
 #flowersRight
 {
-    background:url("flowers-right.png") no-repeat fixed 111% -174px transparent; 
+    background: url("flowers-right.png") no-repeat fixed 111% -174px transparent;
 }
 
 #welcome
 {
-    float:right;
-    text-align:right;
-    font-size:12pt;
-    position:relative;
-    top:-14px;
+    float: right;
+    text-align: right;
+    font-size: 12pt;
+    position: relative;
+    top: -14px;
 }
 
 hr
 {
-    border:solid 1px white;
+    border: solid 1px white;
 }
- 
- 
- h2:before
- {
-     content: url("/Content/arrow.png");
-     padding-left:4px;
-     padding-right:4px;
- }
- 
- #listView
- {
-     border: none;
- }
- 
- #productDetails
- {
-     padding-left:10px;
- }
- 
- #productDescription
- {
-     width:400px;
- }
- 
- #cartBtn
- {
-     background-image: url("cart.png");
-     background-repeat:no-repeat;
-     width: 250px;
-     height: 46px;
-     float:right;
- }
- 
- #basketList
- {
-     width:100%;
- }
- 
- #basketList tr td
- {
-     text-align:center; 
-      height:40px;
- } 
- 
- #basketList tr.even
- {
+
+
+h2:before
+{
+    content: url("/Content/arrow.png");
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+#listView
+{
+    border: none;
+}
+
+#productDetails
+{
+    padding-left: 10px;
+}
+
+#productDescription
+{
+    width: 400px;
+}
+
+#cartBtn
+{
+    background-image: url("cart.png");
+    background-repeat: no-repeat;
+    width: 250px;
+    height: 46px;
+    float: right;
+}
+
+#basketList
+{
+    width: 100%;
+}
+
+#basketList tr td
+{
+    text-align: center;
+    height: 40px;
+}
+
+#basketList tr.even
+{
     background-color: #CFFFAB;
     height: 20px;
- } 
- 
- #basketList tr.odd
- {
-     background-color: #ececec;
-     height:20px;
- } 
- 
- #basketList tr.totalRow
- {
+}
+
+#basketList tr.odd
+{
+    background-color: #ececec;
+    height: 20px;
+}
+
+#basketList tr.totalRow
+{
     background-color: #9BC3FF;
     height: 20px;
- } 
- 
- #basketList tr.totalRow td
- {
-    font-weight:bold;
- } 
- 
- #removeBtn
- {
-     background-image: url("delete.png");
-     background-repeat: no-repeat;
-     width: 24px;
-     height: 24px;
-     float:right;
- }
- 
- #checkoutBtn
- {
-     background-image: url("checkout.png");
-     background-repeat: no-repeat;
-     margin-top:20px;
-     width: 210px;
-     height: 46px;
-     float:right;
- }
- 
+}
+
+#basketList tr.totalRow td
+{
+    font-weight: bold;
+}
+
+#removeBtn
+{
+    background-image: url("delete.png");
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    float: right;
+}
+
+#editBtn
+{
+    background-image: url("edit.png");
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    float: right;
+}
+
+#detailsBtn
+{
+    background-image: url("details.png");
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    float: right;
+}
+
+#checkoutBtn
+{
+    background-image: url("checkout.png");
+    background-repeat: no-repeat;
+    margin-top: 20px;
+    width: 210px;
+    height: 46px;
+    float: right;
+}
+
+#addBtn
+{
+    background-image: url("add.png");
+    background-repeat: no-repeat;
+    margin-top: 20px;
+    width: 137px;
+    height: 24px;
+    float: left;
+}
+
 #adminMenu
 {
-	float:right;
-	padding:8px;
-	text-align: right;
-	min-width:280px;
-	background-image: url('/Content/admin_bg.png');
-	color:White;
+    float: right;
+    padding: 8px;
+    text-align: right;
+    min-width: 280px;
+    background-image: url('/Content/admin_bg.png');
+    color: White;
 }
 
 #adminMenu a, #welcome a
 {
-    color:White;
+    color: White;
 }
 
 #adminMenu a:hover, #welcome a:hover
 {
-    color:#cccccc;
+    color: #cccccc;
+}
+
+input[type="button"], input[type="reset"], input[type="submit"]
+{
+    background-color: #CCCCCC;
+    border: 1px solid transparent;
+    border-radius: 0 0 0 0;
+    color: #353535;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Segoe UI' , 'Open Sans' ,Verdana,Arial,Helvetica,sans-serif;
+    font-size: 9pt;
+    font-weight: 400;
+    height: 32px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    min-height: 32px;
+    min-width: 90px;
+    padding: 4px 10px;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+}
+
+fieldset
+{
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+input[type="text"], input[type="email"], input[type="url"], input[type="phone"], input[type="password"], textarea
+{
+    background-color: #FFFFFF;
+    border: 1px solid #BABABA;
+    margin-right: 32px;
+    min-height: 20px;
+    outline: 0 none;
+    padding: 4px 32px 6px 5px;
+    position: relative;
+}
+
+button, input, select, textarea
+{
+    vertical-align: baseline;
+}
+
+#filterButton
+{
+    background-color: #CCCCCC;
+    border: 1px solid transparent;
+    border-radius: 0 0 0 0;
+    color: #353535;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Segoe UI' , 'Open Sans' ,Verdana,Arial,Helvetica,sans-serif;
+    font-size: 9pt;
+    font-weight: 400;
+    height: 20px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    min-height: 20px;
+    min-width: 90px; 
+    padding: 0;
+    position: relative;
+    text-align: center;
+    vertical-align: baseline;
 }

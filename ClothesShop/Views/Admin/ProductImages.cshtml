@@ -4,15 +4,19 @@
     ViewBag.Title = "ProductImages";
 }
 
-<h2>ProductImages</h2>
+<div id="adminMenu">
+	@Html.Partial("AdminMenu")
+</div>
+
+<h2>Images for product @ViewBag.ProductNo</h2>
  
 <table>
     <tr>
         <th>
-            ProductId
+            ID
         </th>
         <th>
-            FileName
+            Image
         </th>
         <th></th>
     </tr>
@@ -20,13 +24,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ProductId)
+            @Html.DisplayFor(modelItem => item.ID)
         </td>
         <td>
-            <img src="/ProductPictures/@item.FileName" />
+            <img src="/Data/Thumbnail/@item.ID?size=150" />
         </td>
         <td> 
-            @Html.ActionLink("Delete", "RemoveImage", new { id=item.ID })
+            @Html.ActionLink(" ", "RemoveImage", new { id = item.ID }, new { id = "removeBtn", onclick="return confirm('Are you sure want to delete this?');" })
         </td>
     </tr>
 }
@@ -37,6 +41,6 @@
     <span>New file: </span>
     <input type="hidden" name="id" value="@ViewBag.ProductId" />
     <input type="file" name="ImageFile" />
-    <input type="submit" value="Upload" />
+    <input type="submit" value="Upload" id="filterButton"/>
 }
 

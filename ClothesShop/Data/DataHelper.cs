@@ -93,7 +93,7 @@ namespace ClothesShop.Data
 		{
 			using (ClothesShopEntities entity = new ClothesShopEntities())
 			{
-				return new List<SubcategoryModel>(entity.SubCategories.Select(subcategory => new SubcategoryModel() { SubcategoryName = subcategory.SubCategoryName, ID = subcategory.ID }));
+				return new List<SubcategoryModel>(entity.SubCategories.Select(subcategory => new SubcategoryModel() { SubcategoryName = subcategory.SubCategoryName, ID = subcategory.ID , CategoryName = subcategory.Category.CategoryName, CategoryID = subcategory.CategoryID}));
 			}
 		}
 
