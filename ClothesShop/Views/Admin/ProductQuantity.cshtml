@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ClothesShop.Models.QuantityModel>
+
+@{
+    ViewBag.Title = "ProductQuantity";
+}
+
+<h2>ProductQuantity</h2>
+
+<table>
+    <tr>
+        <th>
+            ProductId
+        </th>
+        <th>
+            Size
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Size)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td> 
+            @Html.ActionLink("Delete", "DeleteQuantity", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+
+@using(Html.BeginForm("AddQuantity", "Admin", FormMethod.Post))
+{
+    <span>New entry: </span>
+    <input type="hidden" name="id" value="@ViewBag.ProductId" />  <br />
+    <span>Size</span> <input type="text" name="size" /><br />
+    <span>Quantity</span> <input type="text" name="quantity" /><br />
+    
+    <input type="submit" value="Add" />
+}
+

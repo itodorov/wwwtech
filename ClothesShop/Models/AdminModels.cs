@@ -28,4 +28,11 @@ namespace ClothesShop.Models
 		[Display(Name = "Category")]
 		public int CategoryID { get; set; }
 	}
+
+	public class PictureModel
+	{
+		public int ID { get; set; }
+		public int ProductId { get; set; }
+		public string FileName { get; set; }
+	}
 }

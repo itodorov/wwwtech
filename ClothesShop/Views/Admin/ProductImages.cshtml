@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ClothesShop.Models.PictureModel>
+
+@{
+    ViewBag.Title = "ProductImages";
+}
+
+<h2>ProductImages</h2>
+ 
+<table>
+    <tr>
+        <th>
+            ProductId
+        </th>
+        <th>
+            FileName
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductId)
+        </td>
+        <td>
+            <img src="/ProductPictures/@item.FileName" />
+        </td>
+        <td> 
+            @Html.ActionLink("Delete", "RemoveImage", new { id=item.ID })
+        </td>
+    </tr>
+}
+</table>
+
+@using(Html.BeginForm("AddImage", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <span>New file: </span>
+    <input type="hidden" name="id" value="@ViewBag.ProductId" />
+    <input type="file" name="ImageFile" />
+    <input type="submit" value="Upload" />
+}
+

@@ -49,7 +49,7 @@ namespace ClothesShop.Data
 			{
 				var result = from product in entities.Products
 							 where product.SubCategoryID == subCategoryID
-							 select new { ProductName = product.Name, ProductID = product.ID, UnitPrice = product.Price };
+							 select new { ProductName = product.Name, ProductID = product.ID, UnitPrice = product.Price, ImageFileName = product.Images.FirstOrDefault() != null ? product.Images.FirstOrDefault().FileName : "noimage.png" };
 
 				return result.ToList();
 			}
