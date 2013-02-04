@@ -291,4 +291,8 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>mkdir $(TargetDir)ProductPictures
+xcopy $(ProjectDir)ProductPictures\*.* $(TargetDir)ProductPictures /Y</PostBuildEvent>
+  </PropertyGroup>
 </Project>
