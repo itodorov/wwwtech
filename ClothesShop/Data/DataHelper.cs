@@ -19,6 +19,7 @@ namespace ClothesShop.Data
 				foreach (ClothesShop.Category cat in entities.Categories)
 				{
 					CategoryNode node = new CategoryNode();
+					node.CategoryId = cat.ID;
 					node.CategoryName = cat.CategoryName;
 					node.Level = 0;
 					node.HasChildren = true;
@@ -51,6 +52,18 @@ namespace ClothesShop.Data
 				var result = from product in entities.Products
 							 where product.SubCategoryID == subCategoryID
 							 select new { ProductName = product.Name, ProductID = product.ID, UnitPrice = product.Price, ImageFileName = product.Images.FirstOrDefault() != null ? product.Images.FirstOrDefault().FileName : "noimage.png" };
+
+				return result.ToList();
+			}
+		}
+
+		public static object GetCategoryItems(int categoryID)
+		{
+			using (ClothesShopEntities entity = new ClothesShopEntities())
+			{
+				var result = entity.Products
+					.Where(product => product.SubCategory.CategoryID == categoryID)
+					.Select(product => new { ProductName = product.Name, ProductID = product.ID, UnitPrice = product.Price, ImageFileName = product.Images.FirstOrDefault() != null ? product.Images.FirstOrDefault().FileName : "noimage.png" });
 
 				return result.ToList();
 			}

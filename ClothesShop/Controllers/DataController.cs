@@ -23,6 +23,12 @@ namespace ClothesShop.Controllers
 			return JsonResultilizer(DataHelper.GetSubCategoryItems(id));
 		}
 
+		[HttpGet]
+		public ActionResult ProductsByCategory(int id)
+		{
+			return JsonResultilizer(DataHelper.GetCategoryItems(id));
+		}
+
 		private ActionResult JsonResultilizer(object result)
 		{
 			JsonResult res = Json(result);

@@ -43,57 +43,15 @@
             <div class="set">
 
                 @for (int i = 0; i < Model.Pictures.Count; i++)
-                {
-                    string cl = i % 4 == 0 ? " first" : i % 4 == 3 ? " last" : "";
-                    cl = "single" + cl;
+				{
+					string cl = i % 4 == 0 ? " first" : i % 4 == 3 ? " last" : "";
+					cl = "single" + cl;
                     <div class="@Html.Raw(cl)">
                         <a href="/ProductPictures/@Model.Pictures[i].FileName" rel="lightbox[plants]" title="Click on the right side of the image to move forward.">
                             <img src="/Data/Thumbnail/@Model.Pictures[i].ID?size=150" alt="Plants: image 1 0f 4 thumb" />
                         </a>
                     </div>
-                }
-@*
-                <div class="single first">
-                    <a href="/Lightbox/images/examples/image-3.jpg" rel="lightbox[plants]" title="Click on the right side of the image to move forward.">
-                        <img src="/Lightbox/images/examples/thumb-3.jpg" alt="Plants: image 1 0f 4 thumb" />
-                    </a>
-                </div>
-                <div class="single">
-                    <a href="/Lightbox/images/examples/image-4.jpg" rel="lightbox[plants]" title="Alternately you can press the right arrow key." >
-                        <img src="/Lightbox/images/examples/thumb-4.jpg" alt="Plants: image 2 0f 4 thumb" />
-                    </a>
-                </div>
-                <div class="single">
-                    <a href="/Lightbox/images/examples/image-5.jpg" rel="lightbox[plants]" title="The script preloads the next image in the set as you're viewing.">
-                        <img src="/Lightbox/images/examples/thumb-5.jpg" alt="Plants: image 3 0f 4 thumb" />
-                    </a>
-                </div>
-                <div class="single last">
-                    <a href="/Lightbox/images/examples/image-6.jpg" rel="lightbox[plants]" title="Click the X or anywhere outside the image to close">
-                        <img src="/Lightbox/images/examples/thumb-6.jpg" alt="Plants: image 4 0f 4 thumb" />
-                    </a>
-                </div>
-
-                <div class="single first">
-                    <a href="/Lightbox/images/examples/image-3.jpg" rel="lightbox[plants]" title="Click on the right side of the image to move forward.">
-                        <img src="/Lightbox/images/examples/thumb-3.jpg" alt="Plants: image 1 0f 4 thumb" />
-                    </a>
-                </div>
-                <div class="single">
-                    <a href="/Lightbox/images/examples/image-4.jpg" rel="lightbox[plants]" title="Alternately you can press the right arrow key." >
-                        <img src="/Lightbox/images/examples/thumb-4.jpg" alt="Plants: image 2 0f 4 thumb" />
-                    </a>
-                </div>
-                <div class="single">
-                    <a href="/Lightbox/images/examples/image-5.jpg" rel="lightbox[plants]" title="The script preloads the next image in the set as you're viewing.">
-                        <img src="/Lightbox/images/examples/thumb-5.jpg" alt="Plants: image 3 0f 4 thumb" />
-                    </a>
-                </div>
-                <div class="single last">
-                    <a href="/Lightbox/images/examples/image-6.jpg" rel="lightbox[plants]" title="Click the X or anywhere outside the image to close">
-                        <img src="/Lightbox/images/examples/thumb-6.jpg" alt="Plants: image 4 0f 4 thumb" />
-                    </a>
-                </div>*@
+				}
 
             </div>
         </div>

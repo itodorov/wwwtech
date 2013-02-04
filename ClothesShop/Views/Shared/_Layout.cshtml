@@ -49,12 +49,13 @@
 
                                 function onSelect(e) {
                                     var item = $("#navTreeView").data("kendoTreeView").dataItem(e.node);
+									var dataSource;
+									if ($("#listView").length == 0) {
+                                        document.location = "/Home";
+                                        return;
+                                    }
                                     if (!item.HasChildren) {
-                                        if ($("#listView").length == 0) {
-                                            document.location = "/Home";
-                                            return;
-                                        }
-                                        var dataSource = new kendo.data.DataSource({
+                                        dataSource = new kendo.data.DataSource({
                                             transport: {
                                                 read: {
                                                     url: "/Data/Products/" + item.CategoryId,
@@ -64,12 +65,22 @@
                                             pageSize: 15
                                         });
                                 
-                                        var pager = $("#pager").data("kendoPager");
-                                        pager.setDataSource(dataSource);
+                                    } else {
+                                        dataSource = new kendo.data.DataSource({
+                                            transport: {
+                                                read: {
+                                                    url: "/Data/ProductsByCategory/" + item.CategoryId,
+                                                    dataType: "json"
+                                                }
+                                            },
+                                            pageSize: 15
+                                        });
+									}
+									var pager = $("#pager").data("kendoPager");
+                                    pager.setDataSource(dataSource);
                                 
-                                        var listview = $("#listView").data("kendoListView");
-                                        listview.setDataSource(dataSource);
-                                    }
+                                    var listview = $("#listView").data("kendoListView");
+                                    listview.setDataSource(dataSource);
                                 };
                                 
                                 $(document).ready(function () {
@@ -78,6 +89,8 @@
                                         dataTextField: ["CategoryName"],
                                         select: onSelect
                                     })
+									var tree = $("#navTreeView").data("kendoTreeView")
+									tree.expand(".k-item");
                                 });
                             </script>
                             
