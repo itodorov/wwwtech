@@ -1,5 +1,6 @@
 ﻿@if(Object.Equals(Session["IsAuthenticated"], true)) 
 {
-    <text>Welcome <strong>@Session["Username"]</strong>!
-    [ @Html.ActionLink("Log Off", "LogOff", "Account") ]</text> <br/>
+    <text>@ClothesShop.TranslationProvider.Welcome 
+    <strong>@Session["Username"]</strong>!
+    [ @Html.ActionLink(ClothesShop.TranslationProvider.SignOut, "LogOff", "Account") ]</text> <br/>
 }

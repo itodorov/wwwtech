@@ -34,7 +34,7 @@ namespace ClothesShop
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);
-            RegisterRoutes(RouteTable.Routes);
+            RegisterRoutes(RouteTable.Routes); 
         }
     }
 }

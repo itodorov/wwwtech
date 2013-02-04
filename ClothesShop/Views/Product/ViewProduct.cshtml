@@ -1,7 +1,7 @@
 ﻿@model ClothesShop.Models.ProductModel
 
 @{
-    ViewBag.Title = "Product Details";
+    ViewBag.Title = ClothesShop.TranslationProvider.ProductDetails;
 }
 
 	<link rel="stylesheet" href="/Lightbox/css/screen.css" type="text/css" media="screen" />
@@ -11,11 +11,11 @@
     <script src="/Lightbox/js/jquery.smooth-scroll.min.js"></script>
     <script src="/Lightbox/js/lightbox.js"></script>
 
-<h2>Product Details</h2>
+<h2>@ClothesShop.TranslationProvider.ProductDetails</h2>
 
 <div id="productDetails">
 
-    <span style="float:right;">ИМА В НАЛИЧНОСТ</span>
+    <span style="float:right;">@ClothesShop.TranslationProvider.HasAvailable</span>
 
     <h3>@Html.DisplayFor(model => model.Name)</h3>
 
@@ -25,17 +25,17 @@
 
     <br />
 
-    <span><b>Категория:</b> @Html.DisplayFor(model => model.CategoryName)</span> <br />
-    <span><b>Каталожен номер:</b> @Html.DisplayFor(model => model.Number)</span> <br />
-    <span><b>Тегло:</b> @Html.DisplayFor(model => model.Weight) </span> <br />
-    <span><b>Цена:</b> @Html.DisplayFor(model => model.Price) </span>
+    <span><b>@ClothesShop.TranslationProvider.Category</b> @Html.DisplayFor(model => model.CategoryName)</span> <br />
+    <span><b>@ClothesShop.TranslationProvider.CatNo</b> @Html.DisplayFor(model => model.Number)</span> <br />
+    <span><b>@ClothesShop.TranslationProvider.Wight</b> @Html.DisplayFor(model => model.Weight) </span> <br />
+    <span><b>@ClothesShop.TranslationProvider.Price</b> @Html.DisplayFor(model => model.Price) </span>
 
     @if (Model.Special)
     {
-        <div id="specialOffer">СПЕЦИАЛНА ОФЕРТА</div>
+        <div id="specialOffer">@ClothesShop.TranslationProvider.SpecialOffer</div>
     }
     
-    @Html.ActionLink(" ", "AddToCart", "Basket", new { id = Model.ID }, new { id = "cartBtn" })
+    @Html.ActionLink(" ", "AddToCart", "Basket", new { id = Model.ID }, new { id = ClothesShop.TranslationProvider.CurrentLanguage == ClothesShop.Language.EN ? "cartBtn" : "cartBtnBg"})
 
     <div style="clear:both;padding-top:15px;">
 
@@ -43,15 +43,15 @@
             <div class="set">
 
                 @for (int i = 0; i < Model.Pictures.Count; i++)
-				{
-					string cl = i % 4 == 0 ? " first" : i % 4 == 3 ? " last" : "";
-					cl = "single" + cl;
+                {
+                    string cl = i % 4 == 0 ? " first" : i % 4 == 3 ? " last" : "";
+                    cl = "single" + cl;
                     <div class="@Html.Raw(cl)">
                         <a href="/ProductPictures/@Model.Pictures[i].FileName" rel="lightbox[plants]" title="Click on the right side of the image to move forward.">
                             <img src="/Data/Thumbnail/@Model.Pictures[i].ID?size=150" alt="Plants: image 1 0f 4 thumb" />
                         </a>
                     </div>
-				}
+                }
 
             </div>
         </div>

@@ -77,6 +77,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Data\CategoryNode.cs" />
     <Compile Include="Data\DataHelper.cs" />
+    <Compile Include="Data\TranslationProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -90,11 +91,15 @@
     <Content Include="Content\add.png" />
     <Content Include="Content\admin_bg.png" />
     <Content Include="Content\arrow.png" />
+    <Content Include="Content\bg.png" />
     <Content Include="Content\cart.png" />
+    <Content Include="Content\cart_bg.png" />
     <Content Include="Content\checkout.png" />
+    <Content Include="Content\checkout_bg.png" />
     <Content Include="Content\delete.png" />
     <Content Include="Content\details.png" />
     <Content Include="Content\edit.png" />
+    <Content Include="Content\en.png" />
     <Content Include="Content\flowers-left.png" />
     <Content Include="Content\flowers-right.png" />
     <Content Include="Content\ListView.css" />

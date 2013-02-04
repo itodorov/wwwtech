@@ -2,18 +2,18 @@
     if(Object.Equals(Session["IsAdmin"], true)) 
     {      
         <text>  
-        @Html.ActionLink("ADMIN", "Index", "Admin") | 
+        @Html.ActionLink(ClothesShop.TranslationProvider.Admin, "Index", "Admin") | 
         </text>
     }
     
     ClothesShop.Models.BasketModel basket = (ClothesShop.Models.BasketModel)Session["Basket"];
     
-    @Html.ActionLink(String.Format("BASKET({0})", basket.Count), "Index", "Basket")
+    @Html.ActionLink(String.Format(ClothesShop.TranslationProvider.Basket + "({0})", basket.Count), "Index", "Basket")
 }
 else
 {
 	<span>
-        @Html.ActionLink("SIGN IN", "LogOn", "Account") | 
-        @Html.ActionLink("SIGN UP", "Register", "Account")
+        @Html.ActionLink(ClothesShop.TranslationProvider.SignIn, "LogOn", "Account") | 
+        @Html.ActionLink(ClothesShop.TranslationProvider.Register, "Register", "Account")
     </span>
 }
