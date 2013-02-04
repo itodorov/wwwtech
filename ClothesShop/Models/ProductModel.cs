@@ -50,12 +50,11 @@ namespace ClothesShop.Models
 
 		[Required]
 		[Display(Name = "Price")]
-		[DataType(DataType.Currency)]
+		[DisplayFormat(DataFormatString="${0:N2}")]
         public decimal Price { get; set; }
 
 		[Required]
 		[Display(Name = "Weight")]
-		[DataType(DataType.Currency)]
         public decimal Weight { get; set; }
 
 		[Required]
