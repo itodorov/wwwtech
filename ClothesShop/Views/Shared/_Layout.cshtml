@@ -14,6 +14,12 @@
         <div id="flowersLeft">
             <div id="flowersRight">
                 <div id="pageContainer">
+
+                    <div style = "float:left;">
+                        <a href="/Home/Lang/BG?returnUrl=@Request.Url.LocalPath" title="Български"><img src="/Content/bg.png" /></a>
+                        <a href="/Home/Lang/EN?returnUrl=@Request.Url.LocalPath" title="English"><img src="/Content/en.png" /></a>
+                    </div>
+                    
                     <section>
 
                         <div id="loginContainer">
@@ -30,7 +36,7 @@
                     </header>
                     <section id="pageContent">
                         <section id="mainNav">
-                            <h2>Products</h2>
+                            <h2>@ClothesShop.TranslationProvider.Products</h2>
                             <hr>
                             <div id="navTreeView">
 
@@ -93,7 +99,7 @@
 
                 </div>
                     <footer>
-                        All Rights Reserved (R) (For additional info see the @Html.ActionLink("About", "About", "Home") page)
+                    @Html.Raw(String.Format(ClothesShop.TranslationProvider.AllRightsReserved, "<a href=\"/Home/About\">" + ClothesShop.TranslationProvider.About + "</a>"))
                     </footer>
             </div>
         </div>

@@ -134,6 +134,15 @@ h2:before
     float: right;
 }
 
+#cartBtnBg
+{
+    background-image: url("cart_bg.png");
+    background-repeat: no-repeat;
+    width: 270px;
+    height: 46px;
+    float: right;
+}
+
 #basketList
 {
     width: 100%;
@@ -198,6 +207,17 @@ h2:before
 #checkoutBtn
 {
     background-image: url("checkout.png");
+    background-repeat: no-repeat;
+    margin-top: 20px;
+    width: 210px;
+    height: 46px;
+    float: right;
+}
+
+
+#checkoutBtnBg
+{
+    background-image: url("checkout_bg.png");
     background-repeat: no-repeat;
     margin-top: 20px;
     width: 210px;
